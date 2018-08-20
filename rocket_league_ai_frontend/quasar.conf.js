@@ -59,7 +59,7 @@ module.exports = function (ctx) {
         'QItemSeparator',
         'QItemTile',
         'QVideo',
-        'QCollapsible',    
+        'QCollapsible', 
       ],
       directives: [
         'Ripple'

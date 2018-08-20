@@ -1,6 +1,6 @@
 <template>
   <div class="col-5 leaderBoard cap_flex">
-    <q-list-header>Leaderboard:</q-list-header>
+    <h5 class="bg-primary text-white">LEADER BOARD:</h5>
     <q-item>
       <q-item-side>
         <q-item-tile avatar>

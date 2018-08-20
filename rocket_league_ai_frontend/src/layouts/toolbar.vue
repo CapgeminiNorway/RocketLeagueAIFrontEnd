@@ -7,12 +7,12 @@
             <img src="assets/capgemini_logo.svg" class="" >
           </div>
         </q-toolbar-title>
-        <q-side-link to="/" class="text-black q-mr-md">How to play</q-side-link>
+        <router-link :to="'/howto'" class="q-mr-md">How to play</router-link>
         <q-side-link to="/" class="text-black">Sign in</q-side-link>
       </q-toolbar>
       <div class="arl_toolbar">
         <div class="row justify-between">
-        <h2 class="text-white col q-pa-md">AI Rocket league</h2>
+        <h2 class="text-white col-4 q-pa-md">AI Rocket league</h2>
         <div class="toolbar_overlay col-2 q-pa-md">
           <h5 class="text-secondary">Sign up today!</h5>
           <p class="text-secondary">Lorem ipsum dolor sit amet, legimus

@@ -8,10 +8,6 @@
     </div>
   </q-page>
 </template>
-
-<style>
-</style>
-
 <script>
 import videoWrapper from '../components/videoWrapper';
 import leaderBoard from '../components/leaderBoard';
