@@ -7,6 +7,13 @@ const routes = [
       { path: '', component: () => import('pages/Index.vue') },
     ],
   },
+  {
+    path: '/howto',
+    component: () => import('layouts/toolbar.vue'),
+    children: [
+      { path: '', component: () => import('pages/howto.vue') },
+    ],
+  },
 ];
 
 // Always leave this as last one
