@@ -1,6 +1,6 @@
 <template>
-  <div class="row justify-center">
-    <div  class="col-7 xl cap_flex q-mr-md">
+  <div class="row gutter wrap justify-center">
+    <div class="col-7 sm-col-12 cap_flex q-mr-md">
       <h5 class="bg-primary text-white">NOW PLAYING</h5>
       <iframe src="https://player.twitch.tv/?channel=rocketleague" frameborder="0" allowfullscreen="true" scrolling="no" width="100%" height="90%"></iframe>
       <a href="https://www.twitch.tv/rocketleague?tt_content=text_link&tt_medium=live_embed"

@@ -7,13 +7,13 @@
             <img src="assets/capgemini_logo.svg" class="" >
           </div>
         </q-toolbar-title>
-        <router-link :to="'/howto'" class="q-mr-md">How to play</router-link>
-        <q-side-link to="/" class="text-black">Sign in</q-side-link>
+        <q-btn :to="'/howto'" flat class="text-black">How to play</q-btn>
+        <q-btn @click.native="openLogin('top')" flat class="text-black">Sign in</q-btn>
       </q-toolbar>
       <div class="arl_toolbar">
         <div class="row justify-between">
         <h2 class="text-white col-4 q-pa-md">AI Rocket league</h2>
-        <div class="toolbar_overlay col-2 q-pa-md">
+        <div class="toolbar_overlay col-2 q-pa-md gt-md">
           <h5 class="text-secondary">Sign up today!</h5>
           <p class="text-secondary">Lorem ipsum dolor sit amet, legimus
             volumus laboramus ei est, est veri munere cu. </p>
@@ -23,41 +23,32 @@
 
       </div>
     </q-layout-header>
-    <!--
-    <q-layout-drawer
-      v-model="leftDrawerOpen"
-      :content-class="$q.theme === 'mat' ? 'bg-grey-2' : null"
-    >
-      <q-list
-        no-border
-        link
-        inset-delimiter
-      >
-        <q-list-header>Essential Links</q-list-header>
-        <q-item @click.native="openURL('http://quasar-framework.org')">
-          <q-item-side icon="school" />
-          <q-item-main label="Docs" sublabel="quasar-framework.org" />
-        </q-item>
-        <q-item @click.native="openURL('https://github.com/quasarframework/')">
-          <q-item-side icon="code" />
-          <q-item-main label="GitHub" sublabel="github.com/quasarframework" />
-        </q-item>
-        <q-item @click.native="openURL('https://discord.gg/5TDhbDg')">
-          <q-item-side icon="chat" />
-          <q-item-main label="Discord Chat Channel" sublabel="https://discord.gg/5TDhbDg" />
-        </q-item>
-        <q-item @click.native="openURL('http://forum.quasar-framework.org')">
-          <q-item-side icon="record_voice_over" />
-          <q-item-main label="Forum" sublabel="forum.quasar-framework.org" />
-        </q-item>
-        <q-item @click.native="openURL('https://twitter.com/quasarframework')">
-          <q-item-side icon="rss feed" />
-          <q-item-main label="Twitter" sublabel="@quasarframework" />
-        </q-item>
-      </q-list>
-    </q-layout-drawer> -->
 
     <q-page-container>
+      <q-modal v-model="loginModal" :position="position">
+        <div style="padding: 20px">
+          <div class="q-display-1 q-mb-md">LOGIN</div>
+          <div>
+            <q-input
+            v-model="form.email"
+            float-label="Username"
+            @keyup.enter="submit"
+            />
+            <q-input
+            v-model="form.password"
+            float-label="Password"
+            type="password"
+            @keyup.enter="submit"
+            />
+            <div class="row float-right q-pb-md">
+              <q-btn color="primary" class="q-ma-sm" @click="submit">Submit</q-btn>
+              <q-btn color="orange" class="q-ml-sm q-mb-sm q-mt-sm"
+              @click="loginModal = false" label="Close" />
+            </div>
+          </div>
+
+        </div>
+      </q-modal>
       <router-view />
     </q-page-container>
   </q-layout>
@@ -70,22 +61,25 @@ export default {
   name: 'MyLayout',
   data() {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop,
       show: true,
+      loginModal: false,
+      position: 'top',
+      form: {
+        email: '',
+        password: '',
+      },
     };
   },
   methods: {
     openURL,
-    handleScroll(event) {
-      console.log(event);
+    openLogin(position) {
+      this.position = position;
+      this.$nextTick(() => {
+        this.loginModal = true;
+      });
     },
   },
-  created() {
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  destroyed() {
-    window.removeEventListener('scroll', this.handleScroll);
-  },
+
 };
 </script>
 
