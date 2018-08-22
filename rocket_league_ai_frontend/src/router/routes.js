@@ -15,10 +15,10 @@ const routes = [
     ],
   },
   {
-    path: '/user',
+    path: '/profile',
     component: () => import('layouts/toolbar.vue'),
     children: [
-      { path: '', component: () => import('pages/user.vue') },
+      { path: '', component: () => import('pages/profile.vue') },
     ],
   },
 ];

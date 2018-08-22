@@ -4,11 +4,16 @@
       <q-toolbar color="white">
         <q-toolbar-title align="left">
           <div class="row ">
-            <img src="../assets/capgemini_logo.svg" class="" >
+            <a href="https://www.capgemini.com/no-no/">
+              <img src="../assets/capgemini_logo.svg" class="" >
+            </a>
           </div>
         </q-toolbar-title>
         <q-btn :to="'/howto'" flat class="text-black">How to play</q-btn>
-        <q-btn @click.native="openLogin('top')" flat class="text-black">Sign in</q-btn>
+        <q-btn v-if="loggedInUser === false" @click.native="openLogin('top')"
+        flat class="text-black">Sign in</q-btn>
+        <q-btn v-if="loggedInUser === true && this.$route.path !== '/profile'" :to="'/profile'" flat
+        class="text-black">Profile</q-btn>
       </q-toolbar>
       <div class="arl_toolbar" v-if="loggedInUser === false">
         <div class="row justify-between">
@@ -28,7 +33,7 @@
       <q-modal v-model="loginModal" :position="position" width="30%">
         <div class="loginModal row justify-center">
           <div class="q-display-1 q-mb-md col-12">LOGIN</div>
-          <div>
+          <div class="inputWrapper">
             <q-input
             v-model="form.username"
             float-label="Username"
@@ -86,7 +91,7 @@ export default {
       this.$store.commit('user/default', userData);
       this.loginModal = !this.loginModal;
       this.loggedInUser = !this.loggedInUser;
-      this.$router.push({ path: '/user' });
+      this.$router.push({ path: '/profile' });
     },
   },
 
