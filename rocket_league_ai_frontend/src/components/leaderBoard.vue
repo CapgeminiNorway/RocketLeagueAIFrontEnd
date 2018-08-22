@@ -52,7 +52,7 @@
 export default {
   name: 'leaderBoard',
   data() {
-
+    return {};
   },
 };
 </script>

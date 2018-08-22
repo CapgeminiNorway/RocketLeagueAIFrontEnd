@@ -73,7 +73,7 @@
 export default {
   name: 'videoWrapper',
   data() {
-
+    return {};
   },
 };
 </script>
