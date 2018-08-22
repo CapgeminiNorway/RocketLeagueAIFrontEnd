@@ -7,7 +7,6 @@
 export default {
   name: 'currentMatch',
   data() {
-
   },
 };
 </script>

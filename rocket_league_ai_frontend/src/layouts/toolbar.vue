@@ -10,7 +10,7 @@
         <q-btn :to="'/howto'" flat class="text-black">How to play</q-btn>
         <q-btn @click.native="openLogin('top')" flat class="text-black">Sign in</q-btn>
       </q-toolbar>
-      <div class="arl_toolbar">
+      <div class="arl_toolbar" v-if="loggedInUser === false">
         <div class="row justify-between">
         <h2 class="text-white col-4 q-pa-md">AI Rocket league</h2>
         <div class="toolbar_overlay col-2 q-pa-md gt-md">
@@ -30,7 +30,7 @@
           <div class="q-display-1 q-mb-md">LOGIN</div>
           <div>
             <q-input
-            v-model="form.email"
+            v-model="form.username"
             float-label="Username"
             @keyup.enter="submit"
             />
@@ -41,7 +41,7 @@
             @keyup.enter="submit"
             />
             <div class="row float-right q-pb-md">
-              <q-btn color="primary" class="q-ma-sm" @click="submit">Submit</q-btn>
+              <q-btn color="primary" class="q-ma-sm" @click="login">Login</q-btn>
               <q-btn color="orange" class="q-ml-sm q-mb-sm q-mt-sm"
               @click="loginModal = false" label="Close" />
             </div>
@@ -65,9 +65,10 @@ export default {
       loginModal: false,
       position: 'top',
       form: {
-        email: '',
+        username: '',
         password: '',
       },
+      loggedInUser: false,
     };
   },
   methods: {
@@ -77,6 +78,15 @@ export default {
       this.$nextTick(() => {
         this.loginModal = true;
       });
+    },
+    login() {
+      const userData = {
+        username: this.form.username,
+      };
+      this.$store.commit('user/default', userData);
+      this.loginModal = !this.loginModal;
+      this.loggedInUser = !this.loggedInUser;
+      this.$router.push({ path: '/user' });
     },
   },
 
