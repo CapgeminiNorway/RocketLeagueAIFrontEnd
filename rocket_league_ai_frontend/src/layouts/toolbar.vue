@@ -4,7 +4,7 @@
       <q-toolbar color="white">
         <q-toolbar-title align="left">
           <div class="row ">
-            <img src="assets/capgemini_logo.svg" class="" >
+            <img src="../assets/capgemini_logo.svg" class="" >
           </div>
         </q-toolbar-title>
         <q-btn :to="'/howto'" flat class="text-black">How to play</q-btn>
@@ -25,9 +25,9 @@
     </q-layout-header>
 
     <q-page-container>
-      <q-modal v-model="loginModal" :position="position">
-        <div style="padding: 20px">
-          <div class="q-display-1 q-mb-md">LOGIN</div>
+      <q-modal v-model="loginModal" :position="position" width="30%">
+        <div class="loginModal row justify-center">
+          <div class="q-display-1 q-mb-md col-12">LOGIN</div>
           <div>
             <q-input
             v-model="form.username"
