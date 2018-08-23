@@ -1,9 +1,9 @@
 <template>
   <div class="row gutter wrap justify-center">
-    <div class="col-7 sm-col-12 cap_flex q-mr-md">
+    <div class="col-7 cap_flex q-mr-md">
       <h5 class="bg-primary text-white">NOW PLAYING</h5>
       <iframe src="https://player.twitch.tv/?channel=capgemini_rocketleagueai" frameborder="0"
-      allowfullscreen="true" scrolling="no" width="100%" height="90%"></iframe>
+      allowfullscreen="true" scrolling="no" width="100%" height="92%"></iframe>
       <a href="https://www.twitch.tv/capgemini_rocketleagueai?tt_content=text_link&tt_medium=live_embed"
       style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px;
       text-decoration:underline;">Watch live video on www.twitch.tv</a>
@@ -22,6 +22,28 @@
         </q-item-side>
       </q-item>
       <!--delete under-->
+      <q-item>
+        <q-item-side>
+          <q-item-tile avatar>
+            <img src="#">
+          </q-item-tile>
+        </q-item-side>
+        <q-item-main label="car vs car" />
+        <q-item-side right>
+          <q-item-tile icon="info" color="green" />
+        </q-item-side>
+      </q-item>
+      <q-item>
+        <q-item-side>
+          <q-item-tile avatar>
+            <img src="#">
+          </q-item-tile>
+        </q-item-side>
+        <q-item-main label="car vs car" />
+        <q-item-side right>
+          <q-item-tile icon="info" color="green" />
+        </q-item-side>
+      </q-item>
       <q-item>
         <q-item-side>
           <q-item-tile avatar>
