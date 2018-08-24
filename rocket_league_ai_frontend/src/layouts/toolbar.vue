@@ -26,7 +26,7 @@
               <p class="text-secondary">Lorem ipsum dolor sit amet, legimus
                 volumus laboramus ei est, est veri munere cu.
               </p>
-              <q-btn class="bg-white">Sign up</q-btn>
+              <q-btn class="bg-white" @click.native="openSignUp">Sign up</q-btn>
             </div>
           </div>
         </div>
@@ -55,7 +55,29 @@
               @click="loginModal = false" label="Close" />
             </div>
           </div>
-
+        </div>
+      </q-modal>
+      <q-modal v-model="signUpModal" width="30%">
+        <div class="loginModal row justify-center">
+          <div class="q-display-1 q-mb-md col-12">SIGN UP</div>
+          <div class="inputWrapper">
+            <q-input
+            v-model="form.username"
+            float-label="Username"
+            @keyup.enter="submit"
+            />
+            <q-input
+            v-model="form.password"
+            float-label="Password"
+            type="password"
+            @keyup.enter="submit"
+            />
+            <div class="row float-right q-pb-md">
+              <q-btn color="primary" class="q-ma-sm" @click="login">Sign up</q-btn>
+              <q-btn color="orange" class="q-ml-sm q-mb-sm q-mt-sm"
+              @click="signUpModal = false" label="Close" />
+            </div>
+          </div>
         </div>
       </q-modal>
       <router-view />
@@ -72,6 +94,7 @@ export default {
     return {
       show: true,
       loginModal: false,
+      signUpModal: false,
       position: 'top',
       form: {
         username: '',
@@ -96,6 +119,11 @@ export default {
       this.loginModal = !this.loginModal;
       this.loggedInUser = !this.loggedInUser;
       this.$router.push({ path: '/profile' });
+    },
+    openSignUp() {
+      this.$nextTick(() => {
+        this.signUpModal = true;
+      });
     },
   },
 
