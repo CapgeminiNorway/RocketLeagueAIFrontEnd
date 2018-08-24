@@ -23,8 +23,8 @@
               <h5 class="text-secondary">
                 Sign up today!
               </h5>
-              <p class="text-secondary">Lorem ipsum dolor sit amet, legimus
-                volumus laboramus ei est, est veri munere cu.
+              <p class="text-secondary">You are just one step away from signing up
+                and joining the league!
               </p>
               <q-btn class="bg-white" @click.native="openSignUp">Sign up</q-btn>
             </div>
@@ -49,8 +49,10 @@
             type="password"
             @keyup.enter="submit"
             />
-            <div class="row float-right q-pb-md">
-              <q-btn color="primary" class="q-ma-sm" @click="login">Login</q-btn>
+            <div class="row q-pb-md">
+              <q-btn flat class="q-ml-sm q-mb-sm q-mt-sm col-3"
+              @click.native="openSignUp()">Sign up</q-btn>
+              <q-btn color="primary" class="q-ma-sm offset-3" @click="login">Login</q-btn>
               <q-btn color="orange" class="q-ml-sm q-mb-sm q-mt-sm"
               @click="loginModal = false" label="Close" />
             </div>
@@ -122,6 +124,7 @@ export default {
     },
     openSignUp() {
       this.$nextTick(() => {
+        this.loginModal = false;
         this.signUpModal = true;
       });
     },
