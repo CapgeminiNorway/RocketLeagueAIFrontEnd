@@ -1,10 +1,12 @@
 <template>
   <q-page class="main-container">
-    <q-btn :to="'/'" flat class="text-black">Back</q-btn>
+    <q-btn :to="'/'" flat class="text-black">Home</q-btn>
     <div class="row">
+      <div class="cap_flex col-12 q-mb-lg">
+        <h5 class="bg-primary text-white ">Hello {{ username }}!</h5>
+      </div>
       <div class="cap_flex col-6">
-        <h5 class="bg-primary text-white">Hello {{ username }}!</h5>
-        <h4>Upload your bot:</h4>
+        <h5 class="bg-primary text-white">Upload your bot:</h5>
         <div class="q-pa-md row">
           <div class="inputWrapper col-6">
             <q-input
@@ -13,7 +15,10 @@
             float-label="Bot name"
             @keyup.enter="submit"
             />
-            <input type="file" />
+            <p class="text-faded">Avatar:</p>
+            <input type="file" class="q-mb-md"/>
+            <p class="text-faded">Zip-file:</p>
+            <input type="file" class="q-mb-md"/>
             <div class="row float-right q-pb-md">
               <q-btn color="primary" class="q-ma-sm" @click="submit">Submit</q-btn>
             </div>

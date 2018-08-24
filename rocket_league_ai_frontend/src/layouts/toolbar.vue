@@ -15,18 +15,22 @@
         <q-btn v-if="loggedInUser === true && this.$route.path !== '/profile'" :to="'/profile'" flat
         class="text-black">Profile</q-btn>
       </q-toolbar>
-      <div class="arl_toolbar" v-if="loggedInUser === false">
-        <div class="row justify-between">
-        <h2 class="text-white col-4 q-pa-md">AI Rocket league</h2>
-        <div class="toolbar_overlay col-2 q-pa-md gt-md">
-          <h5 class="text-secondary">Sign up today!</h5>
-          <p class="text-secondary">Lorem ipsum dolor sit amet, legimus
-            volumus laboramus ei est, est veri munere cu. </p>
-          <q-btn class="bg-white">Sign up</q-btn>
+      <router-link to="/">
+        <div class="arl_toolbar" v-if="loggedInUser === false || this.$route.path !== '/'">
+          <div class="row justify-between">
+            <h2 class="text-white col-4 q-pa-md">AI Rocket league</h2>
+            <div class="toolbar_overlay col-2 q-pa-md gt-md" v-if="loggedInUser === false">
+              <h5 class="text-secondary">
+                Sign up today!
+              </h5>
+              <p class="text-secondary">Lorem ipsum dolor sit amet, legimus
+                volumus laboramus ei est, est veri munere cu.
+              </p>
+              <q-btn class="bg-white">Sign up</q-btn>
+            </div>
+          </div>
         </div>
-      </div>
-
-      </div>
+      </router-link>
     </q-layout-header>
 
     <q-page-container>
