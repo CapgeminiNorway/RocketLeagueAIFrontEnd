@@ -9,10 +9,11 @@
     </div>
     <div class="row justify-center q-mt-lg">
       <div class="col-4 instruction_circle ">
-        <a href="http://www.rlbot.org/"><h1><q-icon name="code"/></h1></a>
+        <a href="http://www.rlbot.org/" target="_blank"><h1><q-icon name="code"/></h1></a>
         <p class="col-2 text-bold">1. Choose programming language</p>
         <p>
-          You can choose between 4 different <a href="http://www.rlbot.org/">programming languages</a>
+          You can choose between 4 different
+          <a href="http://www.rlbot.org/" target="_blank">programming languages</a>
           for your bot.
           We recommend Scratch if you've never done programming before.
         </p>

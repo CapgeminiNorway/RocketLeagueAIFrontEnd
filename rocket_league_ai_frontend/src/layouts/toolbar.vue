@@ -4,7 +4,7 @@
       <q-toolbar color="white">
         <q-toolbar-title align="left">
           <div class="row ">
-            <a href="https://www.capgemini.com/no-no/">
+            <a href="https://www.capgemini.com/no-no/" target="_blank">
               <img src="../assets/capgemini_logo.svg" class="" >
             </a>
           </div>

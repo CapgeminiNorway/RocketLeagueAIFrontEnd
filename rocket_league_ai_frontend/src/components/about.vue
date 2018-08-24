@@ -19,7 +19,7 @@
     <p class="q-subheading">
       Artificial Intelligence (AI) is a hot and trending topic.
       Capgemini uses leading-edge tools and best-in-class partner technology.
-      Read more <a href="https://www.capgemini.com/service/automation-drive/">HERE</a>.
+      Read more <a href="https://www.capgemini.com/service/automation-drive/" target="_blank">HERE</a>.
     </p>
   </div>
 </template>
