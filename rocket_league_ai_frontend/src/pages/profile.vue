@@ -2,10 +2,11 @@
   <q-page class="main-container">
     <q-btn :to="'/'" flat class="text-black">Back</q-btn>
     <div class="row">
-      <div class="cap_flex col-12">
+      <div class="cap_flex col-6">
         <h5 class="bg-primary text-white">Hello {{ username }}!</h5>
-        <div class="q-pa-md">
-          <div class="inputWrapper">
+        <h4>Upload your bot:</h4>
+        <div class="q-pa-md row">
+          <div class="inputWrapper col-6">
             <q-input
             class="q-mb-md"
             v-model="form.botname"
@@ -19,6 +20,11 @@
           </div>
         </div>
 
+      </div>
+      <div class="col-1"></div>
+      <div class="cap_flex col-5">
+        <h5 class="bg-primary text-white">STATS</h5>
+        <p>no stats yet</p>
       </div>
     </div>
 

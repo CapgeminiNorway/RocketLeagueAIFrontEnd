@@ -8,7 +8,8 @@
       </div>
     </div>
     <div class="row justify-center q-mt-lg">
-      <div class="col-4 instruction_circle "><h1><q-icon name="code"/></h1>
+      <div class="col-4 instruction_circle ">
+        <a href="http://www.rlbot.org/"><h1><q-icon name="code"/></h1></a>
         <p class="col-2 text-bold">1. Choose programming language</p>
         <p>
           You can choose between 4 different <a href="http://www.rlbot.org/">programming languages</a>
@@ -23,7 +24,8 @@
           instructions on the external site.
         </p>
       </div>
-      <div class="col-4 instruction_circle"><h1><q-icon name="whatshot"/></h1>
+      <div class="col-4 instruction_circle"><router-link to="/profile">
+        <h1><q-icon name="whatshot"/></h1></router-link>
         <p class="col-2 text-bold">3. Upload your AI-bot!</p>
         <p>
           Upload your script from your <router-link to="/profile"><a>profile</a></router-link>.
