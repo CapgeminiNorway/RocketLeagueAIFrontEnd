@@ -17,4 +17,6 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
-!Icon
+
+# Except folders from igonre
+!node_modules/quasar-extras/material-icons/*
