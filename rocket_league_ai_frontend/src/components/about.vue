@@ -1,15 +1,26 @@
 <template>
   <div class="col-12 about q-mt-md cap_flex">
-    <h5>About</h5>
-    <p>Lorem ipsum dolor sit amet, justo veniam aeterno id mel, mel id amet ferri accusamus,
-      vivendum pericula ei sea. Modo numquam ponderum sea et, eu tation noluisse per, ad graeci
-      dolorum duo. Nam ridens delectus cu. Ei affert fastidii vis, ne placerat sapientem
-      vituperatoribus ius. Mel legimus probatus complectitur cu.
-
-      Ad duo augue recusabo. Evertitur constituam ad nec, ex magna aliquid adipisci pro.
-      Per habeo mollis at, vim ut impetus aperiri. Ius meis simul ex, no solum exerci
-      voluptaria eum. Mei an mazim possim ancillae, aliquid facilis scribentur vim ad,
-      pri ei zril primis.</p>
+    <h5 class="bg-primary text-white">About</h5>
+    <p class="q-display-1">NO HUMANS ALLOWED! </p>
+    <p>
+      Can you make a Rocket League bot that crushes the competition and wins the
+      Capgemini Rocket League AI League? CaRLAIL is open for anyone that enjoys
+      AI and/or games, create a bot in one of the
+      four supported languages and
+      submit your bot for the glory of beating the competition and showing of your
+      coding skills.<router-link to="/howto">
+      Read more..</router-link>
+    </p>
+    <br>
+    <p class="q-headline text-primary">
+      One of Capgemini's values is "Fun". That is why we built this site. We want to
+      make it fun to learn Artificial Intelligence (AI).
+    </p>
+    <p class="q-subheading">
+      Artificial Intelligence (AI) is a hot and trending topic.
+      Capgemini uses leading-edge tools and best-in-class partner technology.
+      Read more <a href="https://www.capgemini.com/service/automation-drive/">HERE</a>.
+    </p>
   </div>
 </template>
 <script>
