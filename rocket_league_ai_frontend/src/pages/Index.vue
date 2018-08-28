@@ -4,17 +4,17 @@
 
       <h5 class="bg-primary text-white col-12">NOW PLAYING</h5>
       <div class="col-12 row ">
-        <div class="col-7">
+        <div class="col-lg-7 col-12">
           <videoWrapper window-height></videoWrapper>
         </div>
-        <div class="col-5">
+        <div class="col-lg-5 col-12">
           <currentMatch></currentMatch>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 col-12">
           <nextup></nextup>
         </div>
-        <div class="col-1"></div>
-        <div class="col-5">
+        <div v-if="$q.screen.gt.md" class="col-1"></div>
+        <div class="col-lg-5 col-12">
           <leaderBoard></leaderBoard>
         </div>
       </div>
