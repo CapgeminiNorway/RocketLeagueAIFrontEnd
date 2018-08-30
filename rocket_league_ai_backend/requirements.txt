@@ -1,0 +1,5 @@
+azure
+azure-storage
+django
+djangorestframework
+django-rest-swagger

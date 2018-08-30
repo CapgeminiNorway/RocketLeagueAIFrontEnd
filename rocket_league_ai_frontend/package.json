@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "chart.js": "^2.7.2",
+    "quasar": "0.0.18",
     "vue-chartjs": "^3.4.0",
     "vue-i18n": "^7.3.3"
   },
@@ -24,7 +25,7 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-vue": "^4.3.0",
-    "quasar-cli": "^0.17.0",
+    "quasar-cli": "^0.17.13",
     "strip-ansi": "=3.0.1"
   },
   "engines": {
