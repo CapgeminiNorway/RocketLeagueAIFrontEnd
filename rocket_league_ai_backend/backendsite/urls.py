@@ -18,7 +18,6 @@ from django.urls import path
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.conf import settings
-from django.conf.urls.defaults import *
 
 
 # Wire up our API using automatic URL routing.
@@ -29,5 +28,5 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-urlpatterns += url(r'^$', 'django.contrib.staticfiles.views.serve', kwargs={
-            'path': 'index.html', 'document_root': settings.STATIC_ROOT})
+# urlpatterns += url(r'^$', 'django.contrib.staticfiles.views.serve', kwargs={
+#           'path': 'index.html', 'document_root': settings.STATIC_ROOT})
