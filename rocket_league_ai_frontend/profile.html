@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RLBOT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiko">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+        <div class="container"><a class="navbar-brand" href="#"><img src="assets/img/capgeminiLogo.svg"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link disabled" href="index.html">Current Games</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="howToPlay.html">How to Play</a></li>
+                    <li class="nav-item" role="presentation" id="navProfile" style="display:none;"><a class="nav-link active" href="profile.html">Profile</a></li>
+                </ul><span class="navbar-text actions" id="logInSignUpBtns"> <a class="btn btn-light action-button" role="button" href="#" id="logInBtn">Log In</a><a class="btn btn-light action-button" role="button" href="#" id="signUpBtn">Sign Up</a></span></div>
+        </div>
+    </nav>
+    <div data-bs-parallax-bg="true" style="height:300px;background-image:url(assets/img/RLBanner.jpg);background-position:center;background-size:cover;"></div>
+    <div id="uploaderRow">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="headLine" style="font-family:Amiko, sans-serif;">AI Uploader</h3>
+                    <div class="table-responsive w-auto">
+                        <table class="table table-hover table-sm .w-auto">
+                            <tbody>
+                                <tr>
+                                    <td id="avatarFileName">Avatar</td>
+                                    <td><i class="fas fa-cloud-upload-alt upload" id="uploadAvatar" style="font-size:32px;"></i></td>
+                                </tr>
+                                <tr>
+                                    <td id="zipFileName">Zip-file</td>
+                                    <td><i class="fas fa-cloud-upload-alt upload" id="uploadZip" style="font-size:32px;"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="headLine" style="font-family:Amiko, sans-serif;">Stats</h3>
+                    <div class="table-responsive w-auto profileTabels">
+                        <table class="table">
+                            <thead>
+                                <tr></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><br>Total Matches<br></td>
+                                    <td id="profileTotalMatches">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Wins<br></td>
+                                    <td id="profileTotalWins">0</td>
+                                </tr>
+                                <tr>
+                                    <td>Win Percentage<br></td>
+                                    <td id="profileWinPer">0</td>
+                                </tr>
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mainRow"></div>
+    <div class="footer-basic">
+        <footer>
+            <div class="social"><a href="https://www.instagram.com/capgeminino/"><i class="icon ion-social-instagram"></i></a><a href="https://www.linkedin.com/company/capgemini/"><i class="icon ion-social-linkedin"></i></a><a href="https://twitter.com/capgemininorge"><i class="icon ion-social-twitter"></i></a>
+                <a
+                    href="https://www.facebook.com/CapgeminiNorge/"><i class="icon ion-social-facebook"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="index.html">Current Game</a></li>
+                <li class="list-inline-item"><a href="howToPlay.html">How to Play</a></li>
+                <li class="list-inline-item"><a href="profile.html">Profile</a></li>
+            </ul>
+            <div class="modal fade" role="dialog" tabindex="-1" id="signUpModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Log In</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="col">
+                                    <form>
+                                        <div class="form-group"><label>E-Mail</label><input class="form-control" type="text"></div>
+                                        <div class="form-group"><label>User Name &nbsp; &nbsp; &nbsp;</label><input class="form-control" type="text" id="signUpUserName"></div>
+                                        <div class="form-group"><label>Password&nbsp;</label><input class="form-control" type="text" id="signUpPassword"></div>
+                                        <div class="form-group"><label>Confirm Password&nbsp;</label><input class="form-control" type="text" id="signUpConfirmPassword"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button" id="signUpSaveBtn">Save</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" role="dialog" tabindex="-1" id="logInModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Log In</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="col">
+                                    <form>
+                                        <div class="form-group"><label>User Name &nbsp; &nbsp; &nbsp;</label><input class="form-control" type="text" id="logInUserName"></div>
+                                        <div class="form-group"><label>Password&nbsp;</label><input class="form-control" type="text" id="logInPassword"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button" id="logInSaveBtn">Save</button></div>
+                    </div>
+                </div>
+            </div>
+            <p class="copyright">Capgemini Norge AS © 2018</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <script src="assets/js/js.js"></script>
+</body>
+
+</html>

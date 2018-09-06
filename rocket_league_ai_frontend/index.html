@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RLBOT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiko">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+        <div class="container"><a class="navbar-brand" href="#"><img src="assets/img/capgeminiLogo.svg"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html">Current Games</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="howToPlay.html">How to Play</a></li>
+                    <li class="nav-item" role="presentation" id="navProfile" style="display:none;"><a class="nav-link" href="profile.html">Profile</a></li>
+                </ul><span class="navbar-text actions" id="logInSignUpBtns"> <a class="btn btn-light action-button" role="button" href="#" id="logInBtn">Log In</a><a class="btn btn-light action-button" role="button" href="#" id="signUpBtn">Sign Up</a></span></div>
+        </div>
+    </nav>
+    <div id="twitchContainer" class="embed-responsive embed-responsive-16by9">
+<iframe
+    src="https://player.twitch.tv/?channel=capgemini_rocketleagueai"
+    frameborder="<frameborder>"
+    scrolling="<scrolling>"
+    allowfullscreen="<allowfullscreen>" 
+    id="twtich"
+    class="embed-responsive-item">
+</iframe></div>
+    <div class="mainRow">
+        <div class="container" id="scoreContainer">
+            <div class="row" id="scoreRowInner">
+                <div class="col-md-4">
+                    <h3 class="indexHeadLine" style="font-family:Amiko, sans-serif;">Upcoming Matches</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Player 1</th>
+                                    <th></th>
+                                    <th>Player 2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="indexM1P1">Player 1</td>
+                                    <td><i class="fas fa-info-circle" style="font-size:31px;"></i></td>
+                                    <td>Player 2</td>
+                                </tr>
+                                <tr>
+                                    <td id="indexM2P1">Player 1</td>
+                                    <td><i class="fas fa-info-circle" style="font-size:31px;"></i></td>
+                                    <td id="indexM2P2">Player 2</td>
+                                </tr>
+                                <tr>
+                                    <td id="indexM3P1">Player 1<br></td>
+                                    <td><i class="fas fa-info-circle" style="font-size:31px;"></i></td>
+                                    <td id="indexM3P2">Player 2</td>
+                                </tr>
+                                <tr>
+                                    <td id="indexM4P1">Plyer 1</td>
+                                    <td><i class="fas fa-info-circle" style="font-size:31px;"></i></td>
+                                    <td id="indexM4P2">Player 2</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="indexHeadLine" style="font-family:Amiko, sans-serif;">Upcoming Matches</h3>
+                    <div class="table-responsive w-auto" id="currentMatchScoreTable">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><img src="assets/img/cyborg.png" class="avatarPicture"></th>
+                                    <th>Player 1 vs Player 2</th>
+                                    <th>&nbsp;<img src="assets/img/year-of-dragon.png" class="avatarPicture"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="indexPlayer1TotalMatches">0</td>
+                                    <td>Total Matches<br></td>
+                                    <td id="indexPlayer2TotalMatches">0</td>
+                                </tr>
+                                <tr>
+                                    <td id="indexPlayer1TotalWins">0</td>
+                                    <td>Total Wins</td>
+                                    <td id="indexPlayer2TotalWins">0</td>
+                                </tr>
+                                <tr>
+                                    <td id="indexPlayer1WinningPercentage">0</td>
+                                    <td>Win Percentage<br></td>
+                                    <td id="indexPlayer2WinningPercentage">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="indexHeadLine" style="font-family:Amiko, sans-serif;">Leaderbord</h3>
+                    <div class="table-responsive w-auto">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Wins</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="indexFirstScore">7</td>
+                                    <td id="indexFirst">Player 1</td>
+                                </tr>
+                                <tr>
+                                    <td id="indexSecondScore">5</td>
+                                    <td id="indexSecond">Player 1</td>
+                                </tr>
+                                <tr>
+                                    <td id="indexThirdScore">4</td>
+                                    <td id="indexThird">Player 1</td>
+                                </tr>
+                                <tr>
+                                    <td id="indexFourthScore">2</td>
+                                    <td id="indexFourth">Player 1</td>
+                                </tr>
+                                <tr>
+                                    <td id="indexFifthScore">0</td>
+                                    <td id="indexFifth">Player 1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-basic">
+        <footer>
+            <div class="social"><a href="https://www.instagram.com/capgeminino/"><i class="icon ion-social-instagram"></i></a><a href="https://www.linkedin.com/company/capgemini/"><i class="icon ion-social-linkedin"></i></a><a href="https://twitter.com/capgemininorge"><i class="icon ion-social-twitter"></i></a>
+                <a
+                    href="https://www.facebook.com/CapgeminiNorge/"><i class="icon ion-social-facebook"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="index.html">Current Game</a></li>
+                <li class="list-inline-item"><a href="howToPlay.html">How to Play</a></li>
+                <li class="list-inline-item"><a href="profile.html">Profile</a></li>
+            </ul>
+            <div class="modal fade" role="dialog" tabindex="-1" id="signUpModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Log In</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="col">
+                                    <form>
+                                        <div class="form-group"><label>E-Mail</label><input class="form-control" type="text"></div>
+                                        <div class="form-group"><label>User Name &nbsp; &nbsp; &nbsp;</label><input class="form-control" type="text" id="signUpUserName"></div>
+                                        <div class="form-group"><label>Password&nbsp;</label><input class="form-control" type="text" id="signUpPassword"></div>
+                                        <div class="form-group"><label>Confirm Password&nbsp;</label><input class="form-control" type="text" id="signUpConfirmPassword"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button" id="signUpSaveBtn">Save</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" role="dialog" tabindex="-1" id="logInModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Log In</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="col">
+                                    <form>
+                                        <div class="form-group"><label>User Name &nbsp; &nbsp; &nbsp;</label><input class="form-control" type="text" id="logInUserName"></div>
+                                        <div class="form-group"><label>Password&nbsp;</label><input class="form-control" type="text" id="logInPassword"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button" id="logInSaveBtn">Save</button></div>
+                    </div>
+                </div>
+            </div>
+            <p class="copyright">Capgemini Norge AS © 2018</p>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <script src="assets/js/js.js"></script>
+</body>
+
+</html>
