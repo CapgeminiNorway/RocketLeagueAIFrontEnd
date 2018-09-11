@@ -13,26 +13,12 @@ $("#logInBtn").click(function() {
     $("#logInModal").modal("show")
 });
 
-$("#signUpBtn").click(function() {
-    $("#signUpModal").modal("show")
-});
-
-
 //jQuery code to sign out and register users
 $("#signOutBtn").click(function() {
     firebase.auth().signOut().then(function() {
         console.log('Signed Out');
     }, function(error) {
         console.error('Sign Out Error', error);
-    });
-});
-
-$("#signUpSaveBtn").click(function() {
-    firebase.auth().createUserWithEmailAndPassword(document.getElementById("signUpEmail").value, document.getElementById("signUpEmail").value).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
     });
 });
 
@@ -56,7 +42,7 @@ var uiConfig = {
             // Return type determines whether we continue the redirect automatically
             // or whether we leave that to developer to handle.
             $("#logInModal").modal("hide");
-            $("#signUpModal").modal("hide");
+            
             return false;
         },
         uiShown: function() {
@@ -97,14 +83,14 @@ firebase.auth().onAuthStateChanged(function(user) {
         // ...
 
         $("#navProfile").css({ 'display': 'block' });
-        $("#logInSignUpBtns").css({ 'display': 'none' })
-        $("#signOutBtns").css({ 'display': 'block' });
+        $("#logInBtn").css({ 'display': 'none' })
+        $("#signOutBtn").css({ 'display': 'block' });
 
         console.log("User: " + displayName + " signed In");
     } else {
         $("#navProfile").css({ 'display': 'none' });
-        $("#logInSignUpBtns").css({ 'display': 'block' })
-        $("#signOutBtns").css({ 'display': 'none' });
+        $("#logInBtn").css({ 'display': 'block' })
+        $("#signOutBtn").css({ 'display': 'none' });
 
         console.log("No User Signed In");
     }
