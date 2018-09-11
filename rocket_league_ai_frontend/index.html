@@ -16,19 +16,20 @@
     <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
     <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
     <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
-        <div class="container"><a class="navbar-brand" href="#"><img src="assets/img/capgeminiLogo.svg"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand" href="index.html"><img src="assets/img/capgeminiLogo.svg"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html">Current Games</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="howToPlay.html">How to Play</a></li>
                     <li class="nav-item" role="presentation" id="navProfile" style="display:none;"><a class="nav-link" href="profile.html">Profile</a></li>
-                </ul><span class="navbar-text actions" id="logInSignUpBtns"> <a class="btn btn-light action-button" role="button" href="#" id="logInBtn">Log In</a><a class="btn btn-light action-button" role="button" href="#" id="signUpBtn">Sign Up</a></span></div>
+                </ul><span class="navbar-text actions" id="logInSignUpBtns"> <a class="btn btn-light action-button" role="button" href="#" id="logInBtn">Log In</a></span></div>
         </div>
     </nav>
     <div id="twitchContainer" class="embed-responsive embed-responsive-16by9">
@@ -44,7 +45,7 @@
         <div class="container" id="scoreContainer">
             <div class="row" id="scoreRowInner">
                 <div class="col-md-4">
-                    <h3 class="indexHeadLine" style="font-family:Amiko, sans-serif;">Upcoming Matches</h3>
+                    <h3 class="headLine" style="font-family:Amiko, sans-serif;">Upcoming Matches</h3>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -80,7 +81,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <h3 class="indexHeadLine" style="font-family:Amiko, sans-serif;">Upcoming Matches</h3>
+                    <h3 class="headLine" style="font-family:Amiko, sans-serif;">Upcoming Matches</h3>
                     <div class="table-responsive w-auto" id="currentMatchScoreTable">
                         <table class="table">
                             <thead>
@@ -103,7 +104,7 @@
                                 </tr>
                                 <tr>
                                     <td id="indexPlayer1WinningPercentage">0</td>
-                                    <td>Win Percentage<br></td>
+                                    <td>Winning Percentage<br></td>
                                     <td id="indexPlayer2WinningPercentage">0</td>
                                 </tr>
                             </tbody>
@@ -111,7 +112,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <h3 class="indexHeadLine" style="font-family:Amiko, sans-serif;">Leaderbord</h3>
+                    <h3 class="headLine" style="font-family:Amiko, sans-serif;">Leaderbord</h3>
                     <div class="table-responsive w-auto">
                         <table class="table">
                             <thead>
@@ -157,21 +158,19 @@
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="index.html">Current Game</a></li>
                 <li class="list-inline-item"><a href="howToPlay.html">How to Play</a></li>
-                <li class="list-inline-item"><a href="profile.html">Profile</a></li>
+                <li class="list-inline-item"></li>
             </ul>
             <div class="modal fade" role="dialog" tabindex="-1" id="signUpModal">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Log In</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                            <h4 class="modal-title">Create a new user</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                         <div class="modal-body">
                             <div class="container">
                                 <div class="col">
                                     <form>
-                                        <div class="form-group"><label>E-Mail</label><input class="form-control" type="text"></div>
-                                        <div class="form-group"><label>User Name &nbsp; &nbsp; &nbsp;</label><input class="form-control" type="text" id="signUpUserName"></div>
+                                        <div class="form-group"><label>E-Mail</label><input class="form-control" type="text" id="signUpEmail"></div>
                                         <div class="form-group"><label>Password&nbsp;</label><input class="form-control" type="text" id="signUpPassword"></div>
-                                        <div class="form-group"><label>Confirm Password&nbsp;</label><input class="form-control" type="text" id="signUpConfirmPassword"></div>
                                     </form>
                                 </div>
                             </div>
@@ -186,21 +185,24 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Log In</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
                         <div class="modal-body">
-                            <div class="container">
-                                <div class="col">
-                                    <form>
-                                        <div class="form-group"><label>User Name &nbsp; &nbsp; &nbsp;</label><input class="form-control" type="text" id="logInUserName"></div>
-                                        <div class="form-group"><label>Password&nbsp;</label><input class="form-control" type="text" id="logInPassword"></div>
-                                    </form>
-                                </div>
+                            <div class="container" id="firebaseui-auth-container">
+                                <div></div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button" id="logInSaveBtn">Save</button></div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
                     </div>
                 </div>
             </div>
-            <p class="copyright">Capgemini Norge AS © 2018</p>
-        </footer>
+            <p class="copyright">Capgemini Norge AS © 2018</p><script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js">
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<script src="js/jquery.iframe-transport.js"></script>
+<script src="js/jquery.fileupload.js"></script>
+</footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>
