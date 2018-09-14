@@ -8,6 +8,36 @@ var config = {
 };
 firebase.initializeApp(config);
 
+
+//Firebase Auth Check if user logged in    
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is signed in.
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var providerData = user.providerData;
+        // ...
+
+        $("#navProfile").css({ 'display': 'block' });
+        $("#logInBtn").css({ 'display': 'none' })
+        $("#signOutBtn").css({ 'display': 'block' });
+
+        console.log("User: " + displayName + " signed In");
+    } else {
+        $("#navProfile").css({ 'display': 'none' });
+        $("#logInBtn").css({ 'display': 'block' })
+        $("#signOutBtn").css({ 'display': 'none' });
+
+        console.log("No User Signed In");
+    }
+});
+
+
+
 //jQuery code to show and hide modal boxes
 $("#logInBtn").click(function() {
     $("#logInModal").modal("show")
@@ -67,32 +97,4 @@ var uiConfig = {
     // Privacy policy url.
     privacyPolicyUrl: '<your-privacy-policy-url>'
 };
-
-
-//Firebase Auth Check if user logged in    
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        // User is signed in.
-        var displayName = user.displayName;
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var photoURL = user.photoURL;
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        var providerData = user.providerData;
-        // ...
-
-        $("#navProfile").css({ 'display': 'block' });
-        $("#logInBtn").css({ 'display': 'none' })
-        $("#signOutBtn").css({ 'display': 'block' });
-
-        console.log("User: " + displayName + " signed In");
-    } else {
-        $("#navProfile").css({ 'display': 'none' });
-        $("#logInBtn").css({ 'display': 'block' })
-        $("#signOutBtn").css({ 'display': 'none' });
-
-        console.log("No User Signed In");
-    }
-});
 
