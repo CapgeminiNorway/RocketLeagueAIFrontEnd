@@ -67,11 +67,11 @@ function checkUser(){
     <div class="highlight-blue">
         <div class="container" id="test">
             <div id="twitchContainer"></div>
-            <p class="text-center">Want to watch the game?&nbsp;</p>
+            <p class="text-center"></p>
             <div class="intro">
-                <h2 class="text-center">Stream</h2>
+                <h2 class="text-center">STREAM</h2>
             </div>
-            <div class="buttons"><button class="btn btn-primary" type="button" id="streamBtn">Button</button></div>
+            <div class="buttons"><button class="btn btn-primary" type="button" id="streamBtn">Start Stream</button></div>
         </div>
     </div>
     <div class="mainRow">
@@ -232,7 +232,9 @@ function checkUser(){
     document.getElementById("streamBtn").onclick= startStream;
     
 function startStream() {
-
+var started = false;
+    
+    if (!started){
     var iframe = document.createElement('iframe');
     iframe.style.display = "block";
     iframe.src = "https://player.twitch.tv/?channel=capgemini_rocketleagueai";
@@ -243,6 +245,8 @@ function startStream() {
     iframe.className="embed-responsive-item";
     document.getElementById("twitchContainer").className = "embed-responsive embed-responsive-16by9";
     document.getElementById("twitchContainer").appendChild(iframe);
+    started = true;
+    } 
 };
         </script></footer>
     </div>
