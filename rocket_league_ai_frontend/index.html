@@ -50,22 +50,8 @@ function checkUser(){
 });
 }
     
-function startStream() {
-    if (!started){
-        var iframe = document.createElement('iframe');
-        iframe.style.display = "block";
-        iframe.src = "https://player.twitch.tv/?channel=capgemini_rocketleagueai";
-        iframe.frameborder="<frameborder>";
-        iframe.scrolling="<scrolling>";
-        iframe.allowfullscreen="<allowfullscreen>"; 
-        iframe.id="twtich";
-        iframe.className="embed-responsive-item";
-        document.getElementById("twitchContainer").className = "embed-responsive embed-responsive-16by9";
-        document.getElementById("twitchContainer").appendChild(iframe);
-    } 
-};
+
     window.onload=checkUser;
-    window.onload=startStream;
 
 </script>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
@@ -80,9 +66,8 @@ function startStream() {
         </div>
     </nav>
     <div class="highlight-blue">
-        <div class="container" id="test">
+        <div class="container">
             <div id="twitchContainer"></div>
-            <p class="text-center"></p>
         </div>
     </div>
     <div class="mainRow">
@@ -240,22 +225,11 @@ function startStream() {
             <p class="copyright">Capgemini Norge AS © 2018</p>
 
 <script>
+
     var started = false;
-function startStream() {
-    if (!started){
-        var iframe = document.createElement('iframe');
-        iframe.style.display = "block";
-        iframe.src = "https://player.twitch.tv/?channel=capgemini_rocketleagueai";
-        iframe.frameborder="<frameborder>";
-        iframe.scrolling="<scrolling>";
-        iframe.allowfullscreen="<allowfullscreen>"; 
-        iframe.id="twtich";
-        iframe.className="embed-responsive-item";
-        document.getElementById("twitchContainer").className = "embed-responsive embed-responsive-16by9";
-        document.getElementById("twitchContainer").appendChild(iframe);
-        started = true;
-    } 
-};
+    
+    
+
         </script></footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

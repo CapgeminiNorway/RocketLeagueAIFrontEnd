@@ -113,4 +113,18 @@ function getLeaderBoard(){
     	
     });
 
+    
+    $(document).ready(function(){
+        console.log("YES");
+
+        var iframe = document.createElement('iframe');
+        iframe.style.display = "block";
+        iframe.src = "https://player.twitch.tv/?channel=capgemini_rocketleagueai";
+        iframe.frameborder="<frameborder>";
+        iframe.scrolling="<scrolling>";
+        iframe.allowfullscreen="<allowfullscreen>"; 
+        iframe.id="twtich";
+        iframe.className="embed-responsive-item";
+        document.getElementById("twitchContainer").className = "embed-responsive embed-responsive-16by9";
+        document.getElementById("twitchContainer").appendChild(iframe);});
 }
