@@ -99,3 +99,18 @@ var uiConfig = {
     privacyPolicyUrl: '<your-privacy-policy-url>'
 };
 
+window.onload= getLeaderBoard;
+
+function getLeaderBoard(){
+    var json;  
+    $.getJSON('https://rlait-back.azurewebsites.net/api/getLeaderBoard?code=aaa0qYLt5HNgsfOPA2fK/Pi08pwvXeAsvprZx8oa9gnNwAwYyAOy4Q==', function(data) {
+    	json = data
+
+    	for(var i = 0; i < json.length; i++){
+    		$("#index" + i).html(json[i].userName); 
+			$("#index" + i + "Score").html(json[i].count); 
+    	}
+    	
+    });
+
+}
