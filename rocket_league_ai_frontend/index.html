@@ -44,13 +44,13 @@ var mainUser;
     firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
        mainUser = user;
-        $("#navProfile").css({ 'display': 'block' });
-        $("#logInBtn").css({ 'display': 'none' })
-        $("#signOutBtn").css({ 'display': 'block' });
+       document.getElementById("#navProfile").style.display ='block' ;
+         document.getElementById("#logInBtn").style.display = 'none';
+         document.getElementById("#signOutBtn").style.display = 'block';
     }   else {
-        $("#navProfile").css({ 'display': 'none' });
-        $("#logInBtn").css({ 'display': 'block' })
-        $("#signOutBtn").css({ 'display': 'none' });
+        document.getElementById("#navProfile").style.display = 'none';
+        document.getElementById("#logInBtn").style.display ='block';
+        document.getElementById("#signOutBtn").style.display = 'none' ;
     }
 });
 
