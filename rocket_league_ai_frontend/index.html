@@ -20,14 +20,24 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body>
+<body><script> 
+
+var mainUser;
+    
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+       mainUser = user;
+    }
+});
+
+</script>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
         <div class="container"><a class="navbar-brand" href="index.html"><img src="assets/img/capgeminiLogo.svg"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link disabled" href="index.html">Current Games</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="howToPlay.html">How to Play</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html">Current Games</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="howToPlay.html">How to Play</a></li>
                     <li class="nav-item" role="presentation" id="navProfile" style="display:none;"><a class="nav-link" href="profile.html">Profile</a></li>
                 </ul><span class="navbar-text actions" id="logInSignUpBtns"> <a class="btn btn-light action-button" role="button" href="#" id="logInBtn">Log In</a><a class="btn btn-light action-button" role="button" href="#" id="signOutBtn" style="display:none">Log Out</a></span></div>
         </div>
@@ -198,7 +208,19 @@
 </script>
 <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
 <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
-</footer>
+
+
+<script> 
+    if (mainUser)
+        $("#navProfile").css({ 'display': 'block' });
+        $("#logInBtn").css({ 'display': 'none' })
+        $("#signOutBtn").css({ 'display': 'block' });
+    } else {
+        $("#navProfile").css({ 'display': 'none' });
+        $("#logInBtn").css({ 'display': 'block' })
+        $("#signOutBtn").css({ 'display': 'none' });
+
+</script></footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>
