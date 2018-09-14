@@ -1,12 +1,3 @@
-var config = {
-    apiKey: "AIzaSyAvtpZMLwOVUW3q3dT4nBmBWVW0PtULxoo",
-    authDomain: "rlait-17c9d.firebaseapp.com",
-    databaseURL: "https://rlait-17c9d.firebaseio.com",
-    projectId: "rlait-17c9d",
-    storageBucket: "rlait-17c9d.appspot.com",
-    messagingSenderId: "331841630143"
-};
-firebase.initializeApp(config);
 
 
 //Firebase Auth Check if user logged in    
