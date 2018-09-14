@@ -13,15 +13,15 @@ firebase.auth().onAuthStateChanged(function(user) {
         var providerData = user.providerData;
         // ...
 
-        $("#navProfile").css({ 'display': 'block' });
-        $("#logInBtn").css({ 'display': 'none' })
-        $("#signOutBtn").css({ 'display': 'block' });
-
+        
+        document.getElementById("navProfile").style.display ='block' ;
+        document.getElementById("logInBtn").style.display = 'none';
+        document.getElementById("signOutBtn").style.display = 'block';
         console.log("User: " + displayName + " signed In");
     } else {
-        $("#navProfile").css({ 'display': 'none' });
-        $("#logInBtn").css({ 'display': 'block' })
-        $("#signOutBtn").css({ 'display': 'none' });
+        document.getElementById("navProfile").style.display = 'none';
+        document.getElementById("logInBtn").style.display ='block';
+        document.getElementById("signOutBtn").style.display = 'none' ;
 
         console.log("No User Signed In");
     }
