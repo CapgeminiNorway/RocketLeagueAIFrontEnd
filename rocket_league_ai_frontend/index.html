@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiko">
     <link rel="stylesheet" href="assets/css/Features-Boxed.css">
     <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Blue.css">
     <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
     <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
     <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
@@ -20,7 +21,35 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body>
+<body><script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js">
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+
+<script> 
+
+var mainUser;
+    
+    
+function checkUser(){
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+       mainUser = user;
+       document.getElementById("navProfile").style.display ='block' ;
+         document.getElementById("logInBtn").style.display = 'none';
+         document.getElementById("signOutBtn").style.display = 'block';
+    }   else {
+        document.getElementById("navProfile").style.display = 'none';
+        document.getElementById("logInBtn").style.display ='block';
+        document.getElementById("signOutBtn").style.display = 'none' ;
+    }
+});
+}
+    
+    window.onload=checkUser;
+
+</script>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
         <div class="container"><a class="navbar-brand" href="index.html"><img src="assets/img/capgeminiLogo.svg"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
@@ -31,39 +60,17 @@
                     <li class="nav-item" role="presentation" id="navProfile" style="display:none;"><a class="nav-link" href="profile.html">Profile</a></li>
                 </ul><span class="navbar-text actions" id="logInSignUpBtns"> <a class="btn btn-light action-button" role="button" href="#" id="logInBtn">Log In</a><a class="btn btn-light action-button" role="button" href="#" id="signOutBtn" style="display:none">Log Out</a></span></div>
         </div>
-    </nav><script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
-<script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js">
-</script>
-<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
-<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
-
-<script> 
-
-var mainUser;
-    
-    firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-       mainUser = user;
-       document.getElementById("#navProfile").style.display ='block' ;
-         document.getElementById("#logInBtn").style.display = 'none';
-         document.getElementById("#signOutBtn").style.display = 'block';
-    }   else {
-        document.getElementById("#navProfile").style.display = 'none';
-        document.getElementById("#logInBtn").style.display ='block';
-        document.getElementById("#signOutBtn").style.display = 'none' ;
-    }
-});
-
-</script>
-    <div id="twitchContainer" class="embed-responsive embed-responsive-16by9">
-<iframe
-    src="https://player.twitch.tv/?channel=capgemini_rocketleagueai"
-    frameborder="<frameborder>"
-    scrolling="<scrolling>"
-    allowfullscreen="<allowfullscreen>" 
-    id="twtich"
-    class="embed-responsive-item">
-</iframe></div>
+    </nav>
+    <div class="highlight-blue">
+        <div class="container" id="test">
+            <div id="twitchContainer"></div>
+            <p class="text-center">Want to watch the game?&nbsp;</p>
+            <div class="intro">
+                <h2 class="text-center">Stream</h2>
+            </div>
+            <div class="buttons"><button class="btn btn-primary" type="button" id="streamBtn">Button</button></div>
+        </div>
+    </div>
     <div class="mainRow">
         <div class="container" id="scoreContainer">
             <div class="row" id="scoreRowInner">
@@ -218,18 +225,23 @@ var mainUser;
             </div>
             <p class="copyright">Capgemini Norge AS © 2018</p>
 
+<script>
+    document.getElementById("streamBtn").onclick= startStream;
+    
+function startStream() {
 
-<script> 
-    if (mainUser){
-        document.getElementById("#navProfile").style.display ='block' ;
-         document.getElementById("#logInBtn").style.display = 'none';
-         document.getElementById("#signOutBtn").style.display = 'block';
-    } else {
-        document.getElementById("#navProfile").style.display = 'none';
-        document.getElementById("#logInBtn").style.display ='block';
-        document.getElementById("#signOutBtn").style.display = 'none' ;
-    }
-</script></footer>
+    var iframe = document.createElement('iframe');
+    iframe.style.display = "block";
+    iframe.src = "https://player.twitch.tv/?channel=capgemini_rocketleagueai";
+    iframe.frameborder="<frameborder>";
+    iframe.scrolling="<scrolling>";
+    iframe.allowfullscreen="<allowfullscreen>"; 
+    iframe.id="twtich";
+    iframe.className="embed-responsive-item";
+    document.getElementById("twitchContainer").className = "embed-responsive embed-responsive-16by9";
+    document.getElementById("twitchContainer").appendChild(iframe);
+};
+        </script></footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>
