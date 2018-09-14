@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RLBOT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiko">
+    <link rel="stylesheet" href="assets/css/Features-Boxed.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="assets/css/Highlight-Phone.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+        <div class="container"><a class="navbar-brand" href="index.html"><img src="assets/img/capgeminiLogo.svg"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div
+                class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" role="presentation"><a class="nav-link disabled" href="index.html">Current Games</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="howToPlay.html">How to Play</a></li>
+                    <li class="nav-item" role="presentation" id="navProfile" style="display:none;"><a class="nav-link" href="profile.html">Profile</a></li>
+                </ul><span class="navbar-text actions" id="logInSignUpBtns"> <a class="btn btn-light action-button" role="button" href="#" id="logInBtn">Log In<br></a><a class="btn btn-light action-button" role="button" href="#" id="signOutBtn" style="display:none">Log Out</a></span></div>
+        </div>
+    </nav>
+    <div data-bs-parallax-bg="true" style="height:350px;background-image:url(assets/img/RLBanner.jpg);background-position:center;background-size:cover;"></div>
+    <div class="features-boxed">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center" style="font-family:Amiko, sans-serif;font-size:61px;">HOW TO PLAY</h2>
+                <p class="text-center"><br>There are several ways to make your own AI-bot and participate in the league. Follow the instructions to start and compete.<br><br></p>
+            </div>
+            <div class="row justify-content-center features">
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box"><a href="http://www.rlbot.org/"><i class="fa fa-language icon"></i></a>
+                        <h3 class="name"><strong>Choose &nbsp;a programming language</strong><br></h3>
+                        <p class="description">You can choose between 5 different&nbsp;<a href="http://www.rlbot.org/">programming languages</a>&nbsp;for your bot. We recommend Scratch if you've never done programming before.<br></p><a href="http://www.rlbot.org/" class="learn-more">Learn more »</a></div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box"><a href="#"><i class="fa fa-info-circle icon"></i></a>
+                        <h3 class="name"><strong>2. Follow the instructions</strong><br></h3>
+                        <p class="description">You get guidance depending on the programming language of your choice. Follow the instructions on the external site.<br></p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box"><a href="profile.html"><i class="fa fa-upload icon"></i></a>
+                        <h3 class="name"><strong>3. Upload your AI-bot!</strong><br></h3>
+                        <p class="description">Upload your script from your&nbsp;profile. Give it a smashing name and start competing!<br></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-basic">
+        <footer>
+            <div class="social"><a href="https://www.instagram.com/capgeminino/"><i class="icon ion-social-instagram"></i></a><a href="https://www.linkedin.com/company/capgemini/"><i class="icon ion-social-linkedin"></i></a><a href="https://twitter.com/capgemininorge"><i class="icon ion-social-twitter"></i></a>
+                <a
+                    href="https://www.facebook.com/CapgeminiNorge/"><i class="icon ion-social-facebook"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="index.html">Current Game</a></li>
+                <li class="list-inline-item"><a href="howToPlay.html">How to Play</a></li>
+                <li class="list-inline-item"></li>
+            </ul>
+            <div class="modal fade" role="dialog" tabindex="-1" id="signUpModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Create a new user</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="col">
+                                    <form>
+                                        <div class="form-group"><label>E-Mail</label><input class="form-control" type="text" id="signUpEmail"></div>
+                                        <div class="form-group"><label>Password&nbsp;</label><input class="form-control" type="text" id="signUpPassword"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button" id="signUpSaveBtn">Save</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" role="dialog" tabindex="-1" id="logInModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Log In</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                        <div class="modal-body">
+                            <div class="container" id="firebaseui-auth-container">
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button></div>
+                    </div>
+                </div>
+            </div>
+            <p class="copyright">Capgemini Norge AS © 2018</p><script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js">
+</script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+<script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+</footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <script src="assets/js/js.js"></script>
+</body>
+
+</html>

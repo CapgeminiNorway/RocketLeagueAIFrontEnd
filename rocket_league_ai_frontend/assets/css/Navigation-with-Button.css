@@ -1,0 +1,287 @@
+.navigation-clean-button {
+  background:#fff;
+  padding-top:.75rem;
+  padding-bottom:.75rem;
+  color:#333;
+  border-radius:0;
+  box-shadow:none;
+  border:none;
+  margin-bottom:0;
+}
+
+@media (min-width:768px) {
+  .navigation-clean-button {
+    padding-top:1rem;
+    padding-bottom:1rem;
+  }
+}
+
+.navigation-clean-button .navbar-brand {
+  font-weight:bold;
+  color:inherit;
+}
+
+.navigation-clean-button .navbar-brand:hover {
+  color:#222;
+}
+
+.navigation-clean-button .navbar-toggler {
+  border-color:#ddd;
+}
+
+.navigation-clean-button .navbar-toggler:hover, .navigation-clean-button .navbar-toggler:focus {
+  background:none;
+}
+
+.navigation-clean-button .navbar-toggler {
+  color:#888;
+}
+
+.navigation-clean-button .navbar-collapse, .navigation-clean-button .form-inline {
+  border-top-color:#ddd;
+}
+
+.navigation-clean-button .navbar-nav a.active, .navigation-clean-button .navbar-nav > .show > a {
+  background:none;
+  box-shadow:none;
+}
+
+.navigation-clean-button.navbar-light .navbar-nav a.active, .navigation-clean-button.navbar-light .navbar-nav a.active:focus, .navigation-clean-button.navbar-light .navbar-nav a.active:hover {
+  color:#8f8f8f;
+  box-shadow:none;
+  background:none;
+  pointer-events:none;
+}
+
+.navigation-clean-button.navbar .navbar-nav .nav-link {
+  padding-left:18px;
+  padding-right:18px;
+}
+
+.navigation-clean-button.navbar-light .navbar-nav .nav-link {
+  color:#465765;
+}
+
+.navigation-clean-button.navbar-light .navbar-nav .nav-link:focus, .navigation-clean-button.navbar-light .navbar-nav .nav-link:hover {
+  color:#37434d !important;
+  background-color:transparent;
+}
+
+.navigation-clean-button .navbar-nav > li > .dropdown-menu {
+  margin-top:-5px;
+  box-shadow:0 4px 8px rgba(0,0,0,.1);
+  background-color:#fff;
+  border-radius:2px;
+}
+
+.navigation-clean-button .dropdown-menu .dropdown-item:focus, .navigation-clean-button .dropdown-menu .dropdown-item {
+  line-height:2;
+  font-size:14px;
+  color:#37434d;
+}
+
+.navigation-clean-button .dropdown-menu .dropdown-item:focus, .navigation-clean-button .dropdown-menu .dropdown-item:hover {
+  background:#eee;
+  color:inherit;
+}
+
+.navigation-clean-button .actions .login {
+  margin-right:1rem;
+  text-decoration:none;
+  color:#465765;
+}
+
+.navigation-clean-button .navbar-text .action-button, .navigation-clean-button .navbar-text .action-button:active, .navigation-clean-button .navbar-text .action-button:hover {
+  background:#56c6c6;
+  border-radius:20px;
+  font-size:inherit;
+  color:#fff;
+  box-shadow:none;
+  border:none;
+  text-shadow:none;
+  padding:.5rem 1rem;
+  transition:background-color 0.25s;
+  font-size:inherit;
+}
+
+.navigation-clean-button .navbar-text .action-button:hover {
+  background:#2FB5DF;
+}
+
+#banner {
+  /*width:100%;*/
+}
+
+#twitch {
+  width:100%;
+  height:100%;
+}
+
+#twtich {
+  /*position:absolute;*/
+  /*top:0;*/
+  /*left:0;*/
+  /*width:100%;*/
+  /*height:100%;*/
+  /*border:0;*/
+  /*max-width:500px;*/
+  /*max-height:720px;*/
+}
+
+#firstRow {
+  height:100%;
+}
+
+h {
+}
+
+#firstRowContainer {
+  height:100%;
+}
+
+#tester {
+  height:50vh;
+}
+
+#currentGame {
+  max-width:40%;
+  /*margin-right:0;*/
+}
+
+.mainRow {
+  margin:auto;
+  /*height:50vh;*/
+  width:90%;
+  margin-top:25px;
+  /*min-width:100%;*/
+  /*min-height:50vh;*/
+}
+
+#mainRow-container {
+  height:100%;
+}
+
+#mainRow-Container-row {
+  height:100%;
+}
+
+.col.playerAvatar {
+  max-width:40%;
+}
+
+.col.playerNames {
+  /*width:100%;*/
+  flex-grow:3;
+  text-align:center;
+}
+
+#playerNamesHeading {
+  width:100%;
+  margin:auto;
+}
+
+#currentScore {
+  /*padding:5% 0;*/
+}
+
+#mainRow {
+}
+
+#twitchPlayer {
+  width:100%;
+}
+
+.col {
+}
+
+.col {
+}
+
+#twitchStream {
+  /*margin:auto;*/
+  /*width:50%;*/
+  /*height:50vh;*/
+}
+
+#currentMatchScoreRow {
+  padding:20% 0;
+}
+
+#currentMatchScore {
+  text-align:center;
+}
+
+.avatarPicture {
+  width:70%;
+}
+
+.avatarColumn {
+  width:20%;
+}
+
+.table thead th {
+  width:5%;
+}
+
+#twitchStream {
+  /*min-width:500px;*/
+  /*min-height:500px;*/
+}
+
+#currentMatchScoreTable {
+  /*padding:10%;*/
+}
+
+tbody {
+  text-align:center;
+}
+
+.table {
+  text-align:center;
+}
+
+.headLine {
+  text-align:center;
+  background-color:#12ABDB;
+  color:white;
+  font-family:Amiko, sans-serif;
+  border-radius:25px;
+  border-radius:25px;
+  margin:auto;
+  width:80%;
+}
+
+#scoreRow {
+  margin:auto;
+}
+
+#streamRow {
+  /*min-width:500px;*/
+  /*min-height:500px;*/
+  /*height:50%;*/
+}
+
+#streamColumn {
+  width:100%;
+  height:100%;
+  /*margin:3px;*/
+}
+
+#streamContainer {
+  width:100%;
+  height:100%;
+}
+
+#streamRowInner {
+  width:100%;
+  height:100%;
+}
+
+.table-responsive {
+}
+
+.bottomTables {
+  /*padding:5px;*/
+  /*margin:1px;*/
+}
+
