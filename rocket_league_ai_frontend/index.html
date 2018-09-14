@@ -221,13 +221,13 @@ var mainUser;
 
 <script> 
     if (mainUser){
-        $("#navProfile").css({ 'display': 'block' });
-        $("#logInBtn").css({ 'display': 'none' })
-        $("#signOutBtn").css({ 'display': 'block' });
+        document.getElementByID("#navProfile").style.display ='block' ;
+         document.getElementByID("#logInBtn").style.display = 'none';
+         document.getElementByID("#signOutBtn").style.display = 'block';
     } else {
-        $("#navProfile").css({ 'display': 'none' });
-        $("#logInBtn").css({ 'display': 'block' })
-        $("#signOutBtn").css({ 'display': 'none' });
+        document.getElementByID("#navProfile").style.display = 'none';
+        document.getElementByID("#logInBtn").style.display ='block';
+        document.getElementByID("#signOutBtn")..style.display = 'none' ;
     }
 </script></footer>
     </div>
