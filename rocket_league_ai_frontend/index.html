@@ -20,17 +20,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body><script> 
-
-var mainUser;
-    
-    firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-       mainUser = user;
-    }
-});
-
-</script>
+<body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
         <div class="container"><a class="navbar-brand" href="index.html"><img src="assets/img/capgeminiLogo.svg"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
@@ -41,7 +31,24 @@ var mainUser;
                     <li class="nav-item" role="presentation" id="navProfile" style="display:none;"><a class="nav-link" href="profile.html">Profile</a></li>
                 </ul><span class="navbar-text actions" id="logInSignUpBtns"> <a class="btn btn-light action-button" role="button" href="#" id="logInBtn">Log In</a><a class="btn btn-light action-button" role="button" href="#" id="signOutBtn" style="display:none">Log Out</a></span></div>
         </div>
-    </nav>
+    </nav><script> 
+
+var mainUser;
+    
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+       mainUser = user;
+        $("#navProfile").css({ 'display': 'block' });
+        $("#logInBtn").css({ 'display': 'none' })
+        $("#signOutBtn").css({ 'display': 'block' });
+    }   else {
+        $("#navProfile").css({ 'display': 'none' });
+        $("#logInBtn").css({ 'display': 'block' })
+        $("#signOutBtn").css({ 'display': 'none' });
+    }
+});
+
+</script>
     <div id="twitchContainer" class="embed-responsive embed-responsive-16by9">
 <iframe
     src="https://player.twitch.tv/?channel=capgemini_rocketleagueai"
@@ -219,7 +226,7 @@ var mainUser;
         $("#navProfile").css({ 'display': 'none' });
         $("#logInBtn").css({ 'display': 'block' })
         $("#signOutBtn").css({ 'display': 'none' });
-
+    }
 </script></footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
