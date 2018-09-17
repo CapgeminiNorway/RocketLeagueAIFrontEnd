@@ -14,13 +14,6 @@ var username;
 var email;
 var uid;
 
-var account = {
-    name: "rlaitback9112",
-    sas: getSAS()
-};
-
-const blobUri = 'https://' + account.name + '.blob.core.windows.net';
-const blobService = AzureStorage.Blob.createBlobServiceWithSas(blobUri, account.sas);
 
 //Firebase Auth Check if user logged in    
 firebase.auth().onAuthStateChanged(function(user) {
@@ -118,7 +111,6 @@ $("#submitBtn").click(function() {
  
 
     var url = "https://rlait-back.azurewebsites.net/api/newUser?code=LB8ZV1aP7CglkKsnNCg3OctCexAHRbKLb0sNS8xkKlgj4d47aWK4gg==&PID=" + PID + "&username=" + username + "&email=" + email + "&avatar= " + avatar + "&ELO=0&matchesPlayed=0";
-    //test
     $.ajax({ url: url, success: function(result) {} });
 });
 
