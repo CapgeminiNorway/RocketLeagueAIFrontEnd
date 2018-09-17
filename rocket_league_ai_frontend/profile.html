@@ -48,10 +48,10 @@
                     <div class="form-container">
                         <form method="post">
                             <h2 class="text-center"><strong>AI Uploader</strong></h2>
-                            <div class="form-group"><label for="Avatar" placeholder="lol">Display Name</label><input class="form-control" type="email" name="name" required="" minlength="3"></div>
-                            <div class="form-group"><label for="Avatar" class="labelTxt">Avatar</label><input class="fileUploader" id="avatarUpload" name="avatars[]" data-url="server/php/" type="file" /></div>
-                            <div class="form-group"><label for="Code" class="labelTxt">AI Code</label><input class="fileUploader" id="codeUpload" type="file" name="codes[]" data-url="server/php/"/></div>
-                            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Submit Code</button></div>
+                            <div class="form-group"><label for="Avatar" placeholder="lol">Display Name</label><input class="form-control" type="email" name="name" required="" minlength="3" id="username"></div>
+                            <div class="form-group"><label for="Avatar" class="labelTxt">Avatar</label><input type="file" id="avatar" class="fileUploader"></div>
+                            <div class="form-group"><label for="Code" class="labelTxt">AI Code</label><input type="file" id="codeFile" class="fileUploader"></div>
+                            <div class="form-group"><button class="btn btn-primary btn-block" type="button" id="submitBtn">Submit Code</button></div>
                         </form>
                     </div>
                 </div>
@@ -145,6 +145,10 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/azure-storage.blob.min.js"></script>
+    <script src="assets/js/azure-storage.file.min.js"></script>
+    <script src="assets/js/azure-storage.queue.min.js"></script>
+    <script src="assets/js/azure-storage.table.min.js"></script>
     <script src="assets/js/bs-animation.js"></script>
     <script src="assets/js/js.js"></script>
 </body>

@@ -1,4 +1,4 @@
-
+var avatar;
 var config = {
     apiKey: "AIzaSyAvtpZMLwOVUW3q3dT4nBmBWVW0PtULxoo",
     authDomain: "rlait-17c9d.firebaseapp.com",
@@ -9,29 +9,37 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var mainUser;
+var username;
+var email;
+var uid;
+
+var account = {
+    name: "rlaitback9112",
+    sas: getSAS()
+};
+
+const blobUri = 'https://' + account.name + '.blob.core.windows.net';
+const blobService = AzureStorage.Blob.createBlobServiceWithSas(blobUri, account.sas);
 
 //Firebase Auth Check if user logged in    
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-        // User is signed in.
-        var displayName = user.displayName;
-        var email = user.email;
-        var emailVerified = user.emailVerified;
-        var photoURL = user.photoURL;
-        var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
-        var providerData = user.providerData;
-        // ...
+        // User is signed in.  
+        mainUser = user;
+        email = user.email;
+        uid = user.uid;
 
-        
-        document.getElementById("navProfile").style.display ='block' ;
+        document.getElementById("navProfile").style.display = 'block';
         document.getElementById("logInBtn").style.display = 'none';
         document.getElementById("signOutBtn").style.display = 'block';
-        console.log("User: " + displayName + " signed In");
+
+        console.log("UID: " + email + " signed In");
+        console.log("email: " + uid + " signed In");
     } else {
         document.getElementById("navProfile").style.display = 'none';
-        document.getElementById("logInBtn").style.display ='block';
-        document.getElementById("signOutBtn").style.display = 'none' ;
+        document.getElementById("logInBtn").style.display = 'block';
+        document.getElementById("signOutBtn").style.display = 'none';
 
         console.log("No User Signed In");
     }
@@ -73,7 +81,7 @@ var uiConfig = {
             // Return type determines whether we continue the redirect automatically
             // or whether we leave that to developer to handle.
             $("#logInModal").modal("hide");
-            
+
             return false;
         },
         uiShown: function() {
@@ -99,32 +107,19 @@ var uiConfig = {
     privacyPolicyUrl: '<your-privacy-policy-url>'
 };
 
-window.onload= getLeaderBoard;
 
-function getLeaderBoard(){
-    var json;  
-    $.getJSON('https://rlait-back.azurewebsites.net/api/getLeaderBoard?code=aaa0qYLt5HNgsfOPA2fK/Pi08pwvXeAsvprZx8oa9gnNwAwYyAOy4Q==', function(data) {
-    	json = data
+$("#submitBtn").click(function() {
+    var PID = mainUser.uid;
+    var username = $("#username").val();
+    var email = mainUser.email;
+    var code = $("#codeFile").val();
+    var avatar = "avatar_" + PID + ".jpeg";// document.getElementById('fileinput').files[0];
 
-    	for(var i = 0; i < json.length; i++){
-    		$("#index" + i).html(json[i].userName); 
-			$("#index" + i + "Score").html(json[i].count); 
-    	}
-    	
-    });
+ 
 
-    
-    $(document).ready(function(){
-        console.log("YES");
+    var url = "https://rlait-back.azurewebsites.net/api/newUser?code=LB8ZV1aP7CglkKsnNCg3OctCexAHRbKLb0sNS8xkKlgj4d47aWK4gg==&PID=" + PID + "&username=" + username + "&email=" + email + "&avatar= " + avatar + "&ELO=0&matchesPlayed=0";
 
-        var iframe = document.createElement('iframe');
-        iframe.style.display = "block";
-        iframe.src = "https://player.twitch.tv/?channel=capgemini_rocketleagueai";
-        iframe.frameborder="<frameborder>";
-        iframe.scrolling="<scrolling>";
-        iframe.allowfullscreen="<allowfullscreen>"; 
-        iframe.id="twtich";
-        iframe.className="embed-responsive-item";
-        document.getElementById("twitchContainer").className = "embed-responsive embed-responsive-16by9";
-        document.getElementById("twitchContainer").appendChild(iframe);});
-}
+    $.ajax({ url: url, success: function(result) {} });
+});
+
+
