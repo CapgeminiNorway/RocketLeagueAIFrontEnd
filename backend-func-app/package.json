@@ -1,0 +1,16 @@
+{
+  "name": "rocket_league_func_api",
+  "version": "1.0.0",
+  "description": "Rocket league funcitional app",
+  "productName": " Rocket League",
+  "author": "yuri.ivanov@capgemini.com",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "azure-storage": "^2.10.1"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.6.0"
+  }
+}

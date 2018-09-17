@@ -1,0 +1,31 @@
+{
+    "$schema": "http://json.schemastore.org/proxies",
+    "proxies": {
+        "home": {
+            "matchCondition": {
+                "route": "/",
+                "methods": [
+                    "GET"
+                ]
+            },
+            "backendUri": "https://rocketleagueappfunc.z16.web.core.windows.net/index.html"
+        },
+        "Static Assets": {
+            "matchCondition": {
+                "route": "/{*restOfPath}",
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "OPTIONS"
+                ]
+            },
+            "backendUri": "https://rocketleagueappfunc.z16.web.core.windows.net/{restOfPath}"
+        },
+        "api": {
+            "matchCondition": {
+                "route": "/api/{*url}"
+            },
+            "backendUri": "https://%WEBSITE_HOSTNAME%/api/{url}"
+        }
+    }
+}

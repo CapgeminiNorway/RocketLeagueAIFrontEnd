@@ -1,0 +1,35 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "route": "hello",
+      "methods": [
+        "get",
+        "post"
+      ],
+      "authLevel": "anonymous"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "blob",
+      "name": "outputBlob",
+      "path": "output/{filename}",
+      "connection": "rocketleagueappfunc_STORAGE",
+      "direction": "out"
+    },
+    {
+      "type": "table",
+      "name": "outputTable",
+      "tableName": "submissions",
+      "connection": "rocketleagueappfunc_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
