@@ -118,7 +118,7 @@ $("#submitBtn").click(function() {
  
 
     var url = "https://rlait-back.azurewebsites.net/api/newUser?code=LB8ZV1aP7CglkKsnNCg3OctCexAHRbKLb0sNS8xkKlgj4d47aWK4gg==&PID=" + PID + "&username=" + username + "&email=" + email + "&avatar= " + avatar + "&ELO=0&matchesPlayed=0";
-
+    //test
     $.ajax({ url: url, success: function(result) {} });
 });
 
