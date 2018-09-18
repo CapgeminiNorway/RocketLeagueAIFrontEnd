@@ -66,9 +66,9 @@ function checkUser(){
         var iframe = document.createElement('iframe');
         iframe.style.display = "block";
         iframe.src = "https://player.twitch.tv/?channel=capgemini_rocketleagueai";
+        iframe.allowfullscreen="true"; 
         iframe.frameborder="false";
         iframe.scrolling="false";
-        iframe.allowfullscreen="true"; 
         iframe.id="twtich";
         iframe.className="embed-responsive-item";
         document.getElementById("twitchContainer").className = "embed-responsive embed-responsive-16by9";
