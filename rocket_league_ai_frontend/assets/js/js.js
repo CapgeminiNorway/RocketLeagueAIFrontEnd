@@ -29,6 +29,14 @@ firebase.auth().onAuthStateChanged(function(user) {
 
         console.log("UID: " + email + " signed In");
         console.log("email: " + uid + " signed In");
+
+        firebase.auth().currentUser.getIdToken().then(function(idToken) {
+            console.log(idToken);
+        }).catch(function(error) {
+            console.log("User not logged in");
+        });
+
+
     } else {
         document.getElementById("navProfile").style.display = 'none';
         document.getElementById("logInBtn").style.display = 'block';
@@ -105,13 +113,84 @@ $("#submitBtn").click(function() {
     var PID = mainUser.uid;
     var username = $("#username").val();
     var email = mainUser.email;
-    var code = $("#codeFile").val();
-    var avatar = "avatar_" + PID + ".jpeg";// document.getElementById('fileinput').files[0];
+    var url = "https://authtester2.azurewebsites.net/api/Function1?code=8ihkvUudlpCfYDhSq692u8zP3RT61tCIGW5VEmEDgWZfNA7YCWaOLQ==&PID=" + PID + "&username=" + username + "&email=" + email + "&avatar=" + avatar;
 
- 
+    $("#loader").modal("show");
 
-    var url = "https://rlait-back.azurewebsites.net/api/newUser?code=yGjP/6bVoUAlJ4KvtJ34qTW8ntL1QtDuozcNN3XeHt0LcLHM1StwpQ==&PID=" + PID + "&username=" + username + "&email=" + email + "&avatar=" + avatar + "&ELO=0&matchesPlayed=0";
-    $.ajax({ url: url, success: function(result) {} });
+    firebase.auth().currentUser.getIdToken( /* forceRefresh */ true).then(function(idToken) {
+        $.ajax({
+            url: url,
+            method: 'POST',
+            headers: { "Authorization": 'Bearer ' + idToken },
+            success: function(data) {
+                console.log(data);
+                uploadFiles();
+            },
+            error: function(error) {
+                $("#loader").modal("hide");
+                $("#errorTxt").html(error);
+                $("#errorModal").modal("show");
+            }
+        });
+    }).catch(function(error) {
+        $("#loader").modal("hide");
+        $("#errorTxt").html(error);
+        $("#errorModal").modal("show");
+    });
 });
 
+function upload() {
+    uploadFiles()
 
+
+
+}
+
+
+//SAS Generator
+function uploadFiles() {
+    $.ajax({
+        async: true,
+        url: "https://rlaitsasgen.azurewebsites.net/api/SasTokenCSharp1?code=qbBmCvQKvWC4Am9j7OnaSjDAegFRm5mQixGGWglZxvu7aJWYrXe1qA==",
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        processData: false,
+        data: "{\"ContainerName\": \"rlait\"}",
+        success: function(result) {
+            const account = {
+                name: "azxrzvyusginwazfunctions",
+                sas: result
+            };
+
+            const blobUri = 'https://' + account.name + '.blob.core.windows.net';
+            const blobService = AzureStorage.Blob.createBlobServiceWithSas(blobUri, account.sas);
+
+            //AvatarFile
+            const fileA = document.getElementById('avatarUpload').files[0];
+            var extension = fileA.name.split('.').pop();;
+            blobService.createBlockBlobFromBrowserFile('rlait', "avatar_" + mainUser.uid + "." + extension, fileA, (error, result) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    return;
+                }
+            });
+
+            //CodeFile
+            const fileB = document.getElementById('codeUpload').files[0];
+            var extension = fileB.name.split('.').pop();;
+            blobService.createBlockBlobFromBrowserFile('rlait', "avatar_" + mainUser.uid + "." + extension, fileB, (error, result) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    return;
+                }
+            });
+        }
+    });
+
+    console.log('Upload is successful');
+    $("#loader").modal("hide");
+}
