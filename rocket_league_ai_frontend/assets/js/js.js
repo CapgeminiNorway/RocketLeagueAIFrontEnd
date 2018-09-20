@@ -79,21 +79,18 @@ var uiConfig = {
     callbacks: {
         signInSuccessWithAuthResult: function(authResult, redirectUrl) {
             // User successfully signed in.
-            // Return type determines whether we continue the redirect automatically
-            // or whether we leave that to developer to handle.
+
             $("#logInModal").modal("hide");
 
             return false;
         },
         uiShown: function() {
-            // The widget is rendered.
-            // Hide the loader.
             document.getElementById('loader').style.display = 'none';
         }
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: '<url-to-redirect-to-on-success>',
+    signInSuccessUrl: window.location.href,
     signInOptions: [
         // Leave the lines as is for the providers you want to offer your users.
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -139,14 +136,6 @@ $("#submitBtn").click(function() {
     });
 });
 
-function upload() {
-    uploadFiles()
-
-
-
-}
-
-
 //SAS Generator
 function uploadFiles() {
     $.ajax({
@@ -191,6 +180,8 @@ function uploadFiles() {
         }
     });
 
-    console.log('Upload is successful');
     $("#loader").modal("hide");
+    $("#errorTxt").html("Your AI has been uploaded and will be added to the tournament roster");
+    $("#headerTxt").html("Upload was successful");
+    $("#errorModal").modal("show");
 }
