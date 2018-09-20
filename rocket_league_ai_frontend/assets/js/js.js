@@ -110,7 +110,9 @@ $("#submitBtn").click(function() {
     var PID = mainUser.uid;
     var username = $("#username").val();
     var email = mainUser.email;
-    var url = "https://authtester2.azurewebsites.net/api/Function1?code=8ihkvUudlpCfYDhSq692u8zP3RT61tCIGW5VEmEDgWZfNA7YCWaOLQ==&PID=" + PID + "&username=" + username + "&email=" + email + "&avatar=" + avatar;
+    var avatarFile = document.getElementById('avatarUpload').files[0];
+
+    var url = "https://rlaitfunctions.azurewebsites.net/api/newUser?code=YN1TD1aUouEiBeu13CO2GEBrRq4ptE8mnFaCkbMQY9X8kA7eibBfmg==&PID=" + PID + "&username=" + username + "&email=" + email + "&avatar=avatar_" + avatar + "." + avatarFile.name.split('.').pop();
 
     $("#loader").modal("show");
 
@@ -121,7 +123,54 @@ $("#submitBtn").click(function() {
             headers: { "Authorization": 'Bearer ' + idToken },
             success: function(data) {
                 console.log(data);
-                uploadFiles();
+                $.ajax({
+                    async: true,
+                    url: "https://rlaitsas.azurewebsites.net/api/SASTokenGenerator?code=aG3zfIypmcp1tc8VRv2JvDrlbBc6CAcAAC0DukMRaAmuBttaN3x5Mw==",
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    processData: false,
+                    data: "{\"ContainerName\": \"rlait\"}",
+                    success: function(result) {
+                        const account = {
+                            name: "rlaitimagesandcode",
+                            sas: result
+                        };
+
+                        const blobUri = 'https://' + account.name + '.blob.core.windows.net';
+                        const blobService = AzureStorage.Blob.createBlobServiceWithSas(blobUri, account.sas);
+
+                        //AvatarFile
+                        const fileA = document.getElementById('avatarUpload').files[0];
+                        var extension = fileA.name.split('.').pop();
+                        blobService.createBlockBlobFromBrowserFile('rlait', "avatar_" + mainUser.uid + "." + extension, fileA, (error, result) => {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                return;
+                            }
+                        });
+
+                        //CodeFile
+                        const fileB = document.getElementById('codeUpload').files[0];
+                        var extension = fileB.name.split('.').pop();;
+                        blobService.createBlockBlobFromBrowserFile('rlait', "avatar_" + mainUser.uid + "." + extension, fileB, (error, result) => {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                return;
+                            }
+                        });
+
+                        $("#loader").modal("hide");
+                        $("#errorTxt").html("Your AI has been uploaded and will be added to the tournament roster");
+                        $("#headerTxt").html("Upload was successful");
+                        $("#errorModal").modal("show");
+                    }
+                });
+
+
             },
             error: function(error) {
                 $("#loader").modal("hide");
@@ -138,50 +187,5 @@ $("#submitBtn").click(function() {
 
 //SAS Generator
 function uploadFiles() {
-    $.ajax({
-        async: true,
-        url: "https://rlaitsasgen.azurewebsites.net/api/SasTokenCSharp1?code=qbBmCvQKvWC4Am9j7OnaSjDAegFRm5mQixGGWglZxvu7aJWYrXe1qA==",
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        processData: false,
-        data: "{\"ContainerName\": \"rlait\"}",
-        success: function(result) {
-            const account = {
-                name: "azxrzvyusginwazfunctions",
-                sas: result
-            };
 
-            const blobUri = 'https://' + account.name + '.blob.core.windows.net';
-            const blobService = AzureStorage.Blob.createBlobServiceWithSas(blobUri, account.sas);
-
-            //AvatarFile
-            const fileA = document.getElementById('avatarUpload').files[0];
-            var extension = fileA.name.split('.').pop();;
-            blobService.createBlockBlobFromBrowserFile('rlait', "avatar_" + mainUser.uid + "." + extension, fileA, (error, result) => {
-                if (error) {
-                    console.log(error);
-                } else {
-                    return;
-                }
-            });
-
-            //CodeFile
-            const fileB = document.getElementById('codeUpload').files[0];
-            var extension = fileB.name.split('.').pop();;
-            blobService.createBlockBlobFromBrowserFile('rlait', "avatar_" + mainUser.uid + "." + extension, fileB, (error, result) => {
-                if (error) {
-                    console.log(error);
-                } else {
-                    return;
-                }
-            });
-        }
-    });
-
-    $("#loader").modal("hide");
-    $("#errorTxt").html("Your AI has been uploaded and will be added to the tournament roster");
-    $("#headerTxt").html("Upload was successful");
-    $("#errorModal").modal("show");
 }

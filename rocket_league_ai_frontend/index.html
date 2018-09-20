@@ -58,7 +58,7 @@ function checkUser(){
 }
     $(document).ready(function(){
         var json;  
-        $.getJSON('https://rlait-back.azurewebsites.net/api/getLeaderBoard?code=aaa0qYLt5HNgsfOPA2fK/Pi08pwvXeAsvprZx8oa9gnNwAwYyAOy4Q==', function(data) {
+        $.getJSON('https://rlaitfunctions.azurewebsites.net/api/getLeaderBoard', function(data) {
             json = data
 
             for(var i = 0; i < json.length; i++){
