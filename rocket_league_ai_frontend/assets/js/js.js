@@ -26,12 +26,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.getElementById("navProfile").style.display = 'block';
         document.getElementById("logInBtn").style.display = 'none';
         document.getElementById("signOutBtn").style.display = 'block';
-
-        console.log("UID: " + email + " signed In");
-        console.log("email: " + uid + " signed In");
-
         firebase.auth().currentUser.getIdToken().then(function(idToken) {
-            console.log(idToken);
         }).catch(function(error) {
             console.log("User not logged in");
         });
@@ -185,7 +180,37 @@ $("#submitBtn").click(function() {
     });
 });
 
-//SAS Generator
-function uploadFiles() {
+function getUpcomingMatchInfo(increment) {
+
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://rlaitfunctions.azurewebsites.net/api/getUpcomingMatchInfo",
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "no-cache",
+                    "Postman-Token": "7c011b71-dada-42da-821e-0ed562bb84a8"
+                },
+                "processData": false,
+                "data": "{\"increment\": \"" + increment + "\"}"
+            }
+            
+            $.ajax(settings).done(function(response) {
+                json = JSON.parse(response);
+        //P1
+        $("#indexPlayer1TotalMatches2").html(parseInt(json[0].count));
+        $("#indexPlayer1TotalWins2").html(parseInt(json[1].count));
+        $("#indexPlayer1WinningPercentage2").html((parseInt(json[0].count) == 0 ? 0 : (parseInt(json[1].count) / parseInt(json[0].count))).toFixed(2));
+
+        //P2
+        $("#indexPlayer2TotalMatches2").html(parseInt(json[3].count));
+        $("#indexPlayer2TotalWins2").html(parseInt(json[4].count));
+        $("#indexPlayer2WinningPercentage2").html((parseInt(json[3].count) == 0 ? 0 : (parseInt(json[4].count) / parseInt(json[3].count))).toFixed(2));
+
+        //Names
+        $("#currentMatchNames").html(json[2].name + " VS " + json[5].name);
+            });
+        $("#gameInfoModal").modal("show");
 
 }
