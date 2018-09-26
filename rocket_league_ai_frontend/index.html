@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>RLBOT</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -32,55 +32,75 @@
 
 </head>
 
-<body><script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-
-<script> 
-
+<body><script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>
 var mainUser;
-    
-    
-function checkUser(){
-    firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-       mainUser = user;
-       document.getElementById("navProfile").style.display ='block' ;
-         document.getElementById("logInBtn").style.display = 'none';
-         document.getElementById("signOutBtn").style.display = 'block';
-    }   else {
-        document.getElementById("navProfile").style.display = 'none';
-        document.getElementById("logInBtn").style.display ='block';
-        document.getElementById("signOutBtn").style.display = 'none' ;
-    }
-});
-}
-    $(document).ready(function(){
-        var json;  
-        $.getJSON('https://rlaitfunctions.azurewebsites.net/api/getLeaderBoard', function(data) {
-            json = data
 
-            for(var i = 0; i < json.length; i++){
-                $("#index" + i).html(json[i].userName); 
-                $("#index" + i + "Score").html(json[i].count); 
+
+function checkUser() {
+    $.getJSON("https://rlaitfunctions.azurewebsites.net/api/getCurrentMatch", function(data) {
+        data = JSON.parse(data);
+        //P1
+        $("#indexPlayer1TotalMatches").html(parseInt(data[0].count));
+        $("#indexPlayer1TotalWins").html(parseInt(data[1].count));
+        $("#indexPlayer1WinningPercentage").html(parseInt(data[0].count) == 0 ? 0 : (parseInt(data[1].count) / parseInt(data[0].count)));
+
+        //P2
+        $("#indexPlayer2TotalMatches").html(parseInt(data[3].count));
+        $("#indexPlayer2TotalWins").html(parseInt(data[4].count));
+        $("#indexPlayer2WinningPercentage").html(parseInt(data[3].count) == 0 ? 0 : (parseInt(data[4].count) / parseInt(data[3].count)));
+
+        //Names
+        $("#currentMatchNames").html(data[2].name + " VS " + data[5].name);
+    });
+
+    $.getJSON("https://rlaitfunctions.azurewebsites.net/api/getUpcomingMatches", function(data) {
+        json = JSON.parse(data);
+        var num = 0;
+        for (var i = 0; i < 4; i++) {;
+            for (var x = 1; x <= 2; x++) {
+                $("#indexM" + (i + 1) + "P" + x).html(json[num].username);
+                num++
             }
+        }
+    });
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            mainUser = user;
+            document.getElementById("navProfile").style.display = 'block';
+            document.getElementById("logInBtn").style.display = 'none';
+            document.getElementById("signOutBtn").style.display = 'block';
+        } else {
+            document.getElementById("navProfile").style.display = 'none';
+            document.getElementById("logInBtn").style.display = 'block';
+            document.getElementById("signOutBtn").style.display = 'none';
+        }
+    });
+}
+$(document).ready(function() {
+    var json;
+    $.getJSON('https://rlaitfunctions.azurewebsites.net/api/getLeaderBoard', function(data) {
+        json = data
 
-        });
-        var iframe = document.createElement('iframe');
-        iframe.style.display = "block";
-        iframe.src = "https://player.twitch.tv/?channel=capgemini_rocketleagueai";
-        iframe.allow="fullscreen"; 
-        iframe.frameborder="false";
-        iframe.scrolling="false";
-        iframe.id="twtich";
-        iframe.className="embed-responsive-item";
-        document.getElementById("twitchContainer").className = "embed-responsive embed-responsive-16by9";
-        document.getElementById("twitchContainer").appendChild(iframe);
+        for (var i = 0; i < json.length; i++) {
+            $("#index" + i).html(json[i].userName);
+            $("#index" + i + "Score").html(json[i].count);
+        }
+
+    });
+    var iframe = document.createElement('iframe');
+    iframe.style.display = "block";
+    iframe.src = "https://player.twitch.tv/?channel=capgemini_rocketleagueai";
+    iframe.allow = "fullscreen";
+    iframe.frameborder = "false";
+    iframe.scrolling = "false";
+    iframe.id = "twtich";
+    iframe.className = "embed-responsive-item";
+    document.getElementById("twitchContainer").className = "embed-responsive embed-responsive-16by9";
+    document.getElementById("twitchContainer").appendChild(iframe);
 });
 
-    window.onload=checkUser;
-
+window.onload = checkUser;
 </script>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
         <div class="container"><a class="navbar-brand" href="index.html"><img src="assets/img/capgeminiLogo.svg"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -116,7 +136,7 @@ function checkUser(){
                                 <tr>
                                     <td id="indexM1P1">Player 1</td>
                                     <td><i class="fas fa-info-circle" style="font-size:31px;"></i></td>
-                                    <td>Player 2</td>
+                                    <td id="indexM1P2">Player 2</td>
                                 </tr>
                                 <tr>
                                     <td id="indexM2P1">Player 1</td>
@@ -144,7 +164,7 @@ function checkUser(){
                             <thead>
                                 <tr>
                                     <th><img src="assets/img/cyborg.png" class="avatarPicture"></th>
-                                    <th>Player 1 vs Player 2</th>
+                                    <th id="currentMatchNames">Player 1 vs Player 2</th>
                                     <th>&nbsp;<img src="assets/img/year-of-dragon.png" class="avatarPicture"></th>
                                 </tr>
                             </thead>
@@ -161,7 +181,7 @@ function checkUser(){
                                 </tr>
                                 <tr>
                                     <td id="indexPlayer1WinningPercentage">0</td>
-                                    <td>Winning Percentage<br></td>
+                                    <td>Win / Loss Ratio<br></td>
                                     <td id="indexPlayer2WinningPercentage">0</td>
                                 </tr>
                             </tbody>
@@ -252,8 +272,8 @@ function checkUser(){
             </div>
             <p class="copyright">Capgemini Norge AS © 2018</p></footer>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/azure-storage.blob.min.js"></script>
     <script src="assets/js/azure-storage.file.min.js"></script>
     <script src="assets/js/azure-storage.queue.min.js"></script>
