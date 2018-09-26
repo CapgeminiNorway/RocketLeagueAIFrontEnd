@@ -43,7 +43,7 @@ namespace FirebaseAuthenticate
 
             } catch (Exception e)
             {
-                log.Info("FirebaseApp exists");
+                log.Info("FirebaseApp Already Exists: " + e);
             }
 
            
@@ -53,7 +53,7 @@ namespace FirebaseAuthenticate
             }
             catch (Exception e)
             {
-                log.Info("FailedAuth" + idToken);
+                log.Info("FailedAuth : " + e + " : "+ idToken);
                 return req.CreateResponse(HttpStatusCode.Unauthorized);
             }
 
