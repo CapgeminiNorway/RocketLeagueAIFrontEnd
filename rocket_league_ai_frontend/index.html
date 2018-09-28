@@ -35,9 +35,8 @@
 <body><script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>
 var mainUser;
-
-
-function checkUser() {
+    
+window.onload = function(){
     $.getJSON("https://rlaitfunctions.azurewebsites.net/api/getCurrentMatch", function(data) {
         data = JSON.parse(data);
         //P1
@@ -52,10 +51,12 @@ function checkUser() {
 
         //Names
         $("#currentMatchNames").html(data[2].name + " VS " + data[5].name);
+
+
     });
 
     $.getJSON("https://rlaitfunctions.azurewebsites.net/api/getUpcomingMatches", function(data) {
-        json = JSON.parse(data);
+        let json = JSON.parse(data);
         var num = 0;
         for (var i = 0; i < 4; i++) {;
             for (var x = 1; x <= 2; x++) {
@@ -63,30 +64,19 @@ function checkUser() {
                 num++
             }
         }
+        $("#upcomingMatches").show();
+
     });
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            mainUser = user;
-            document.getElementById("navProfile").style.display = 'block';
-            document.getElementById("logInBtn").style.display = 'none';
-            document.getElementById("signOutBtn").style.display = 'block';
-        } else {
-            document.getElementById("navProfile").style.display = 'none';
-            document.getElementById("logInBtn").style.display = 'block';
-            document.getElementById("signOutBtn").style.display = 'none';
-        }
-    });
-}
-$(document).ready(function() {
-    var json;
+    
     $.getJSON('https://rlaitfunctions.azurewebsites.net/api/getLeaderBoard', function(data) {
-        json = data
+        let json = data
 
         for (var i = 0; i < json.length; i++) {
             $("#index" + i).html(json[i].userName);
             $("#index" + i + "Score").html(json[i].count);
         }
-
+        
+        $("#leaderboard").show();
     });
     var iframe = document.createElement('iframe');
     iframe.style.display = "block";
@@ -98,11 +88,9 @@ $(document).ready(function() {
     iframe.className = "embed-responsive-item";
     document.getElementById("twitchContainer").className = "embed-responsive embed-responsive-16by9";
     document.getElementById("twitchContainer").appendChild(iframe);
-});
-
-window.onload = checkUser;
+}
 </script>
-    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" id="navBar" style="display: none">
         <div class="container"><a class="navbar-brand" href="index.html"><img src="assets/img/capgeminiLogo.svg"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
@@ -121,7 +109,7 @@ window.onload = checkUser;
     <div class="mainRow">
         <div class="container" id="scoreContainer">
             <div class="row" id="scoreRowInner">
-                <div class="col-md-4">
+                <div class="col-md-4" id="upcomingMatches" style="display: none">
                     <h3 class="headLine" style="font-family:Amiko, sans-serif;">Upcoming Matches</h3>
                     <div class="table-responsive">
                         <table class="table">
@@ -134,30 +122,30 @@ window.onload = checkUser;
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td id="indexM1P1">Player 1</td>
+                                    <td id="indexM1P1">TBD</td>
                                     <td><i class="fas fa-info-circle" id="inc1" onclick="getUpcomingMatchInfo(1)" style="font-size:31px;"></i></td>
-                                    <td id="indexM1P2">Player 2</td>
+                                    <td id="indexM1P2">TBD</td>
                                 </tr>
                                 <tr>
-                                    <td id="indexM2P1">Player 1</td>
+                                    <td id="indexM2P1">TBD<br></td>
                                     <td><i class="fas fa-info-circle" id="inc1" onclick="getUpcomingMatchInfo(2)" style="font-size:31px;"></i></td>
-                                    <td id="indexM2P2">Player 2</td>
+                                    <td id="indexM2P2">TBD</td>
                                 </tr>
                                 <tr>
-                                    <td id="indexM3P1">Player 1<br></td>
+                                    <td id="indexM3P1">TBD</td>
                                     <td><i class="fas fa-info-circle" id="inc1" onclick="getUpcomingMatchInfo(3)" style="font-size:31px;"></i></td>
-                                    <td id="indexM3P2">Player 2</td>
+                                    <td id="indexM3P2">TBD</td>
                                 </tr>
                                 <tr>
-                                    <td id="indexM4P1">Plyer 1</td>
+                                    <td id="indexM4P1">TBD</td>
                                     <td><i class="fas fa-info-circle" id="inc1" onclick="getUpcomingMatchInfo(4)" style="font-size:31px;"></i></td>
-                                    <td id="indexM4P2">Player 2</td>
+                                    <td id="indexM4P2">TBD</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" id="currentMatch" style="display: none">
                     <h3 class="headLine" style="font-family:Amiko, sans-serif;">Current Match</h3>
                     <div class="table-responsive w-auto" id="currentMatchScoreTable">
                         <table class="table">
@@ -188,7 +176,7 @@ window.onload = checkUser;
                         </table>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" id="leaderboard" style="display: none">
                     <h3 class="headLine" style="font-family:Amiko, sans-serif;">Leaderbord</h3>
                     <div class="table-responsive w-auto">
                         <table class="table">
@@ -201,23 +189,23 @@ window.onload = checkUser;
                             <tbody>
                                 <tr>
                                     <td id="index0Score">7</td>
-                                    <td id="index0">Player 1</td>
+                                    <td id="index0">TBD</td>
                                 </tr>
                                 <tr>
                                     <td id="index1Score">5</td>
-                                    <td id="index1">Player 1</td>
+                                    <td id="index1">TBD</td>
                                 </tr>
                                 <tr>
                                     <td id="index2Score">4</td>
-                                    <td id="index2">Player 1</td>
+                                    <td id="index2">TBD</td>
                                 </tr>
                                 <tr>
                                     <td id="index3Score">2</td>
-                                    <td id="index3">Player 1</td>
+                                    <td id="index3">TBD</td>
                                 </tr>
                                 <tr>
                                     <td id="index4Score">0</td>
-                                    <td id="index4">Player 1</td>
+                                    <td id="index4">TBD</td>
                                 </tr>
                             </tbody>
                         </table>

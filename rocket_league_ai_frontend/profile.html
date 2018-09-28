@@ -57,9 +57,9 @@ function checkUser() {
             document.getElementById("signOutBtn").style.display = 'block';
 
             var json;
-            var wins
-            var matches;
-            var loss;
+            var wins = 0;
+            var matches = 0;
+            var loss = 0;
 
 
 
@@ -81,14 +81,16 @@ function checkUser() {
             $.ajax(settings).done(function(response) {
                 json = response;
                 console.log(response);
-                for (var i = 0; i < json.length; i++) {
-                    matches = parseInt(json[0].count);
+                
+                matches = parseInt(json[0].count);
+                if(json.length < 1){
                     wins = parseInt(json[1].count);
-                    loss = ((matches - wins) == 0) ? 1 : (matches - wins);
-
                 }
-                $("#profileTotalMatches").html(json[0].count);
-                $("#profileTotalWins").html(json[1].count);
+                loss = ((matches - wins) == 0) ? 1 : (matches - wins);
+
+                
+                $("#profileTotalMatches").html(matches);
+                $("#profileTotalWins").html(wins);
                 $("#profileWinPer").html((wins / loss).toFixed(2));
             });
 

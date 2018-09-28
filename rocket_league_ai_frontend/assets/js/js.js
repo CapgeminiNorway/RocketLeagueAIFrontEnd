@@ -39,6 +39,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
         console.log("No User Signed In");
     }
+    $("#navBar").show();
 });
 
 
@@ -150,7 +151,7 @@ $("#submitBtn").click(function() {
                         //CodeFile
                         const fileB = document.getElementById('codeUpload').files[0];
                         var extension = fileB.name.split('.').pop();;
-                        blobService.createBlockBlobFromBrowserFile('rlait', "avatar_" + mainUser.uid + "." + extension, fileB, (error, result) => {
+                        blobService.createBlockBlobFromBrowserFile('rlait', "code_" + mainUser.uid + "." + extension, fileB, (error, result) => {
                             if (error) {
                                 console.log(error);
                             } else {
