@@ -50,7 +50,7 @@ namespace FirebaseAuthenticate
             {
                 string sqlMatches = "SELECT COUNT(DISTINCT matchID) FROM matchList WHERE PID1 = '" + PID + "' OR PID2 = '" + PID + "';";
                 string sqlWins = "SELECT COUNT(DISTINCT matchID) FROM results WHERE win = 1 AND PID = '" + PID + "' GROUP BY PID;";
-                string sqlName = "SELECT username FROM profile WHERE PID = '" + PID + "';";
+                string sqlName = "SELECT username, avatar FROM profile WHERE PID = '" + PID + "';";
 
                 EntryName pidRow = new EntryName();
                 pidRow.label = "username";
@@ -107,7 +107,13 @@ namespace FirebaseAuthenticate
                                     row.label = "username";
                                     row.name = reader.GetString(0);
                                     result.Add(row);
-                                }
+
+                                    EntryName rowA = new EntryName();
+                                    rowA.label = "avatar";
+                                    rowA.name = reader.GetString(1);
+                                    result.Add(rowA);
+
+                            }
                             }
                         }
                     }
