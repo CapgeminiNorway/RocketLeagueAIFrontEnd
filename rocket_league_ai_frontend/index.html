@@ -118,7 +118,42 @@ window.onload = function() {
     </nav>
     <div class="highlight-blue">
         <div class="container">
-            <div id="twitchContainer" allowfullscreen=""></div>
+            <div class="row">
+                <div class="col">
+                    <div id="twitchContainer" allowfullscreen=""></div>
+                </div>
+                <div class="col-md-4" id="currentMatch" style="display: none">
+                    <h3 class="headLine" style="font-family:Amiko, sans-serif;">Current Match</h3>
+                    <div class="table-responsive w-auto" id="currentMatchScoreTable">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th><img src="assets/img/cyborg.png" id="p1Avatar" class="avatarPicture"></th>
+                                    <th id="currentMatchNames">Player 1 vs Player 2</th>
+                                    <th>&nbsp;<img src="assets/img/year-of-dragon.png" id="p2Avatar" class="avatarPicture"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="indexPlayer1TotalMatches">0</td>
+                                    <td>Total Matches<br></td>
+                                    <td id="indexPlayer2TotalMatches">0</td>
+                                </tr>
+                                <tr>
+                                    <td id="indexPlayer1TotalWins">0</td>
+                                    <td>Total Wins</td>
+                                    <td id="indexPlayer2TotalWins">0</td>
+                                </tr>
+                                <tr>
+                                    <td id="indexPlayer1WinningPercentage">0</td>
+                                    <td>Win / Loss Ratio<br></td>
+                                    <td id="indexPlayer2WinningPercentage">0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="mainRow">
@@ -155,37 +190,6 @@ window.onload = function() {
                                     <td id="indexM4P1">TBD</td>
                                     <td><i class="fas fa-info-circle" id="inc4" onclick="getUpcomingMatchInfo(4)" style="font-size:31px;"></i></td>
                                     <td id="indexM4P2">TBD</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-md-4" id="currentMatch" style="display: none">
-                    <h3 class="headLine" style="font-family:Amiko, sans-serif;">Current Match</h3>
-                    <div class="table-responsive w-auto" id="currentMatchScoreTable">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th><img src="assets/img/cyborg.png" id="p1Avatar" class="avatarPicture"></th>
-                                    <th id="currentMatchNames">Player 1 vs Player 2</th>
-                                    <th>&nbsp;<img src="assets/img/year-of-dragon.png" id="p2Avatar" class="avatarPicture"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td id="indexPlayer1TotalMatches">0</td>
-                                    <td>Total Matches<br></td>
-                                    <td id="indexPlayer2TotalMatches">0</td>
-                                </tr>
-                                <tr>
-                                    <td id="indexPlayer1TotalWins">0</td>
-                                    <td>Total Wins</td>
-                                    <td id="indexPlayer2TotalWins">0</td>
-                                </tr>
-                                <tr>
-                                    <td id="indexPlayer1WinningPercentage">0</td>
-                                    <td>Win / Loss Ratio<br></td>
-                                    <td id="indexPlayer2WinningPercentage">0</td>
                                 </tr>
                             </tbody>
                         </table>
