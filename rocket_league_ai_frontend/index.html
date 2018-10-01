@@ -36,20 +36,20 @@ window.onload = function() {
     $.getJSON("https://rlaitfunctions.azurewebsites.net/api/getCurrentMatch", function(data) {
         data = JSON.parse(data);
         //P1
-        $("#p1Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/avatar_" + data[0].name + ".jpg");
+        $("#p1Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/" + data[4].name);
 
         $("#indexPlayer1TotalMatches").html(parseInt(data[1].count));
         $("#indexPlayer1TotalWins").html(parseInt(data[2].count));
         $("#indexPlayer1WinningPercentage").html((parseInt(data[1].count) == 0 ? 0 : (parseInt(data[2].count) / parseInt(data[1].count))).toFixed(2));
 
         //P2
-        $("#p2Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/avatar_" + data[4].name + ".jpg");
-        $("#indexPlayer2TotalMatches").html(parseInt(data[5].count));
-        $("#indexPlayer2TotalWins").html(parseInt(data[6].count));
-        $("#indexPlayer2WinningPercentage").html((parseInt(data[5].count) == 0 ? 0 : (parseInt(data[6].count) / parseInt(data[5].count))).toFixed(2));
+        $("#p2Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/" + data[9].name);
+        $("#indexPlayer2TotalMatches").html(parseInt(data[6].count));
+        $("#indexPlayer2TotalWins").html(parseInt(data[7].count));
+        $("#indexPlayer2WinningPercentage").html((parseInt(data[6].count) == 0 ? 0 : (parseInt(data[7].count) / parseInt(data[6].count))).toFixed(2));
 
         //Names
-        $("#currentMatchNames").html(data[3].name + " VS " + data[7].name);
+        $("#currentMatchNames").html(data[3].name + " VS " + data[8].name);
 
         $("#currentMatch").show();
 

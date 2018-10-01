@@ -186,20 +186,21 @@ function getUpcomingMatchInfo(increment) {
 
 
         //P1
-        $("#uindexP1Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/avatar_" + data[0].name + ".jpg");
+        $("#uindexP1Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/" + data[4].name);
 
         $("#uindexPlayer1TotalMatches").html(parseInt(data[1].count));
         $("#uindexPlayer1TotalWins").html(parseInt(data[2].count));
         $("#uindexPlayer1WinningPercentage").html((parseInt(data[1].count) == 0 ? 0 : (parseInt(data[2].count) / parseInt(data[1].count))).toFixed(2));
 
         //P2
-        $("#uindexP2Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/avatar_" + data[4].name + ".jpg");
-        $("#uindexPlayer2TotalMatches").html(parseInt(data[5].count));
-        $("#uindexPlayer2TotalWins").html(parseInt(data[6].count));
-        $("#uindexPlayer2WinningPercentage").html((parseInt(data[5].count) == 0 ? 0 : (parseInt(data[6].count) / parseInt(data[5].count))).toFixed(2));
+        $("#uindexP2Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/" + data[9].name);
+        $("#uindexPlayer2TotalMatches").html(parseInt(data[6].count));
+        $("#uindexPlayer2TotalWins").html(parseInt(data[7].count));
+        $("#uindexPlayer2WinningPercentage").html((parseInt(data[6].count) == 0 ? 0 : (parseInt(data[7].count) / parseInt(data[6].count))).toFixed(2));
 
         //Names
-        $("#ucurrentMatchNames").html(data[3].name + " VS " + data[7].name);
+        $("#ucurrentMatchNames").html(data[3].name + " VS " + data[8].name);
+        $("#gameInfoModal").modal("show")
     });
-    $("#gameInfoModal").modal("show");
+   ;
 }
