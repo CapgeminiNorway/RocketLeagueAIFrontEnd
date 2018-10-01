@@ -35,23 +35,29 @@
 <body><script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>
 var mainUser;
-    
-window.onload = function(){
+
+window.onload = function() {
     $.getJSON("https://rlaitfunctions.azurewebsites.net/api/getCurrentMatch", function(data) {
         data = JSON.parse(data);
         //P1
-        $("#indexPlayer1TotalMatches").html(parseInt(data[0].count));
-        $("#indexPlayer1TotalWins").html(parseInt(data[1].count));
-        $("#indexPlayer1WinningPercentage").html((parseInt(data[0].count) == 0 ? 0 : (parseInt(data[1].count) / parseInt(data[0].count))).toFixed(2));
+        $("#p1Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/avatar_" + data[0].name + ".jpg");
+
+        $("#indexPlayer1TotalMatches").html(parseInt(data[1].count));
+        $("#indexPlayer1TotalWins").html(parseInt(data[2].count));
+        $("#indexPlayer1WinningPercentage").html((parseInt(data[1].count) == 0 ? 0 : (parseInt(data[2].count) / parseInt(data[1].count))).toFixed(2));
 
         //P2
-        $("#indexPlayer2TotalMatches").html(parseInt(data[3].count));
-        $("#indexPlayer2TotalWins").html(parseInt(data[4].count));
-        $("#indexPlayer2WinningPercentage").html((parseInt(data[3].count) == 0 ? 0 : (parseInt(data[4].count) / parseInt(data[3].count))).toFixed(2));
+        $("#p2Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/avatar_" + data[4].name + ".jpg");
+        $("#indexPlayer2TotalMatches").html(parseInt(data[5].count));
+        $("#indexPlayer2TotalWins").html(parseInt(data[6].count));
+        $("#indexPlayer2WinningPercentage").html((parseInt(data[5].count) == 0 ? 0 : (parseInt(data[6].count) / parseInt(data[5].count))).toFixed(2));
 
         //Names
-        $("#currentMatchNames").html(data[2].name + " VS " + data[5].name);
+        $("#currentMatchNames").html(data[3].name + " VS " + data[7].name);
+
         $("#currentMatch").show();
+
+
 
     });
 
@@ -67,15 +73,28 @@ window.onload = function(){
         $("#upcomingMatches").show();
 
     });
-    
+
     $.getJSON('https://rlaitfunctions.azurewebsites.net/api/getLeaderBoard', function(data) {
         let json = data
 
+
+
         for (var i = 0; i < json.length; i++) {
-            $("#index" + i).html(json[i].userName);
-            $("#index" + i + "Score").html(json[i].count);
+            //$("#index" + i).html(json[i].userName);
+            //$("#index" + i + "Score").html(json[i].count);
+
+            let row = document.createElement('tr');
+            let content1 = document.createElement('td');
+            let content1TextNode = document.createTextNode(json[i].count);
+            content1.appendChild(content1TextNode);
+            row.appendChild(content1);
+            let content2 = document.createElement('td');
+            let content2TextNode = document.createTextNode(json[i].userName);
+            content2.appendChild(content2TextNode);
+            row.appendChild(content2);
+            document.getElementById("leaderBody").appendChild(row);
         }
-        
+
         $("#leaderboard").show();
     });
     var iframe = document.createElement('iframe');
@@ -151,9 +170,9 @@ window.onload = function(){
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th><img src="assets/img/cyborg.png" class="avatarPicture"></th>
+                                    <th><img src="assets/img/cyborg.png" id="p1Avatar" class="avatarPicture"></th>
                                     <th id="currentMatchNames">Player 1 vs Player 2</th>
-                                    <th>&nbsp;<img src="assets/img/year-of-dragon.png" class="avatarPicture"></th>
+                                    <th>&nbsp;<img src="assets/img/year-of-dragon.png" id="p2Avatar" class="avatarPicture"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -176,7 +195,7 @@ window.onload = function(){
                         </table>
                     </div>
                 </div>
-                <div class="col-md-4" id="leaderboard">
+                <div class="col-md-4" id="leaderboard" style="display: none">
                     <h3 class="headLine" style="font-family:Amiko, sans-serif;">Leaderbord</h3>
                     <div class="table-responsive w-auto">
                         <table class="table">
@@ -186,28 +205,7 @@ window.onload = function(){
                                     <th>Name</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td id="index0Score">7</td>
-                                    <td id="index0">TBD</td>
-                                </tr>
-                                <tr>
-                                    <td id="index1Score">5</td>
-                                    <td id="index1">TBD</td>
-                                </tr>
-                                <tr>
-                                    <td id="index2Score">4</td>
-                                    <td id="index2">TBD</td>
-                                </tr>
-                                <tr>
-                                    <td id="index3Score">2</td>
-                                    <td id="index3">TBD</td>
-                                </tr>
-                                <tr>
-                                    <td id="index4Score">0</td>
-                                    <td id="index4">TBD</td>
-                                </tr>
-                            </tbody>
+                            <tbody id="leaderBody"></tbody>
                         </table>
                     </div>
                 </div>
@@ -235,26 +233,26 @@ window.onload = function(){
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th><img src="assets/img/cyborg.png" class="avatarPicture"></th>
-                                            <th id="currentMatchNames">Player 1 vs Player 2</th>
-                                            <th>&nbsp;<img src="assets/img/year-of-dragon.png" class="avatarPicture"></th>
+                                            <th><img src="assets/img/cyborg.png" id="uindexP1Avatar" class="avatarPicture"></th>
+                                            <th id="ucurrentMatchNames">Player 1 vs Player 2</th>
+                                            <th>&nbsp;<img src="assets/img/year-of-dragon.png" id="uindexP2Avatar" class="avatarPicture"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td id="indexPlayer1TotalMatches2">0</td>
+                                            <td id="uindexPlayer1TotalMatches">0</td>
                                             <td>Total Matches<br></td>
-                                            <td id="indexPlayer2TotalMatches2">0</td>
+                                            <td id="uindexPlayer2TotalMatches">0</td>
                                         </tr>
                                         <tr>
-                                            <td id="indexPlayer1TotalWins2">0</td>
+                                            <td id="uindexPlayer1TotalWins">0</td>
                                             <td>Total Wins</td>
-                                            <td id="indexPlayer2TotalWins2">0</td>
+                                            <td id="uindexPlayer2TotalWins">0</td>
                                         </tr>
                                         <tr>
-                                            <td id="indexPlayer1WinningPercentage2">0</td>
+                                            <td id="uindexPlayer1WinningPercentage">0</td>
                                             <td>Win / Loss Ratio<br></td>
-                                            <td id="indexPlayer2WinningPercentage2">0</td>
+                                            <td id="uindexPlayer2WinningPercentage">0</td>
                                         </tr>
                                     </tbody>
                                 </table>

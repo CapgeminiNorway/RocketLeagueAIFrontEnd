@@ -26,10 +26,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.getElementById("navProfile").style.display = 'block';
         document.getElementById("logInBtn").style.display = 'none';
         document.getElementById("signOutBtn").style.display = 'block';
-        firebase.auth().currentUser.getIdToken().then(function(idToken) {
-        }).catch(function(error) {
-            console.log("User not logged in");
-        });
+
 
 
     } else {
@@ -42,176 +39,184 @@ firebase.auth().onAuthStateChanged(function(user) {
     $("#navBar").show();
 });
 
-
-
-//jQuery code to show and hide modal boxes
-$("#logInBtn").click(function() {
-    $("#logInModal").modal("show")
-});
-
-//jQuery code to sign out and register users
-$("#signOutBtn").click(function() {
-    firebase.auth().signOut().then(function() {
-        console.log('Signed Out');
-    }, function(error) {
-        console.error('Sign Out Error', error);
+    //jQuery code to show and hide modal boxes
+    $("#logInBtn").click(function() {
+        $("#logInModal").modal("show")
     });
-});
 
-//Firebase Auth UI Flow
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
-ui.start('#firebaseui-auth-container', {
-    signInOptions: [{
-            provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-            requireDisplayName: false
-        }, firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        firebase.auth.GithubAuthProvider.PROVIDER_ID
-    ]
-});
-
-var uiConfig = {
-    callbacks: {
-        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-            // User successfully signed in.
-
-            $("#logInModal").modal("hide");
-
-            return false;
-        },
-        uiShown: function() {
-            document.getElementById('loader').style.display = 'none';
-        }
-    },
-    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-    signInFlow: 'popup',
-    signInSuccessUrl: window.location.href,
-    signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    ],
-    // Terms of service url.
-    tosUrl: '<your-tos-url>',
-    // Privacy policy url.
-    privacyPolicyUrl: '<your-privacy-policy-url>'
-};
-
-
-$("#submitBtn").click(function() {
-    var PID = mainUser.uid;
-    var username = $("#username").val();
-    var email = mainUser.email;
-    var avatarFile = document.getElementById('avatarUpload').files[0];
-
-    var url = "https://rlaitfunctions.azurewebsites.net/api/newUser?code=YN1TD1aUouEiBeu13CO2GEBrRq4ptE8mnFaCkbMQY9X8kA7eibBfmg==&PID=" + PID + "&username=" + username + "&email=" + email + "&avatar=avatar_" + avatar + "." + avatarFile.name.split('.').pop();
-
-    $("#loader").modal("show");
-
-    firebase.auth().currentUser.getIdToken( /* forceRefresh */ true).then(function(idToken) {
-        $.ajax({
-            url: url,
-            method: 'POST',
-            headers: { "Authorization": 'Bearer ' + idToken },
-            success: function(data) {
-                console.log(data);
-                $.ajax({
-                    async: true,
-                    url: "https://rlaitsas.azurewebsites.net/api/SASTokenGenerator?code=aG3zfIypmcp1tc8VRv2JvDrlbBc6CAcAAC0DukMRaAmuBttaN3x5Mw==",
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    processData: false,
-                    data: "{\"ContainerName\": \"rlait\"}",
-                    success: function(result) {
-                        const account = {
-                            name: "rlaitimagesandcode",
-                            sas: result
-                        };
-
-                        const blobUri = 'https://' + account.name + '.blob.core.windows.net';
-                        const blobService = AzureStorage.Blob.createBlobServiceWithSas(blobUri, account.sas);
-
-                        //AvatarFile
-                        const fileA = document.getElementById('avatarUpload').files[0];
-                        var extension = fileA.name.split('.').pop();
-                        blobService.createBlockBlobFromBrowserFile('rlait', "avatar_" + mainUser.uid + "." + extension, fileA, (error, result) => {
-                            if (error) {
-                                console.log(error);
-                            } else {
-                                return;
-                            }
-                        });
-
-                        //CodeFile
-                        const fileB = document.getElementById('codeUpload').files[0];
-                        var extension = fileB.name.split('.').pop();;
-                        blobService.createBlockBlobFromBrowserFile('rlait', "code_" + mainUser.uid + "." + extension, fileB, (error, result) => {
-                            if (error) {
-                                console.log(error);
-                            } else {
-                                return;
-                            }
-                        });
-
-                        $("#loader").modal("hide");
-                        $("#errorTxt").html("Your AI has been uploaded and will be added to the tournament roster");
-                        $("#headerTxt").html("Upload was successful");
-                        $("#errorModal").modal("show");
-                    }
-                });
-
-
-            },
-            error: function(error) {
-                $("#loader").modal("hide");
-                $("#errorTxt").html(error);
-                $("#errorModal").modal("show");
-            }
+    //jQuery code to sign out and register users
+    $("#signOutBtn").click(function() {
+        firebase.auth().signOut().then(function() {
+            console.log('Signed Out');
+        }, function(error) {
+            console.error('Sign Out Error', error);
         });
-    }).catch(function(error) {
-        $("#loader").modal("hide");
-        $("#errorTxt").html(error);
-        $("#errorModal").modal("show");
     });
-});
 
-function getUpcomingMatchInfo(increment) {
+    //Firebase Auth UI Flow
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    ui.start('#firebaseui-auth-container', {
+        signInOptions: [{
+                provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                requireDisplayName: false
+            }, firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+            firebase.auth.GithubAuthProvider.PROVIDER_ID
+        ]
+    });
 
-            var settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://rlaitfunctions.azurewebsites.net/api/getUpcomingMatchInfo",
-                "method": "POST",
-                "headers": {
-                    "Content-Type": "application/json",
-                    "Cache-Control": "no-cache",
-                    "Postman-Token": "7c011b71-dada-42da-821e-0ed562bb84a8"
-                },
-                "processData": false,
-                "data": "{\"increment\": \"" + increment + "\"}"
+    var uiConfig = {
+        callbacks: {
+            signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                // User successfully signed in.
+
+                $("#logInModal").modal("hide");
+
+                return false;
+            },
+            uiShown: function() {
+                document.getElementById('loader').style.display = 'none';
             }
-            
-            $.ajax(settings).done(function(response) {
-                json = JSON.parse(response);
-        //P1
-        $("#indexPlayer1TotalMatches2").html(parseInt(json[0].count));
-        $("#indexPlayer1TotalWins2").html(parseInt(json[1].count));
-        $("#indexPlayer1WinningPercentage2").html((parseInt(json[0].count) == 0 ? 0 : (parseInt(json[1].count) / parseInt(json[0].count))).toFixed(2));
+        },
+        // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+        signInFlow: 'popup',
+        signInSuccessUrl: window.location.href,
+        signInOptions: [
+            // Leave the lines as is for the providers you want to offer your users.
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+            firebase.auth.GithubAuthProvider.PROVIDER_ID,
+            firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        ],
+        // Terms of service url.
+        tosUrl: '<your-tos-url>',
+        // Privacy policy url.
+        privacyPolicyUrl: '<your-privacy-policy-url>'
+    };
 
-        //P2
-        $("#indexPlayer2TotalMatches2").html(parseInt(json[3].count));
-        $("#indexPlayer2TotalWins2").html(parseInt(json[4].count));
-        $("#indexPlayer2WinningPercentage2").html((parseInt(json[3].count) == 0 ? 0 : (parseInt(json[4].count) / parseInt(json[3].count))).toFixed(2));
+    $("#submitBtn").click(function() {
+        var PID = mainUser.uid;
+        var username = $("#username").val();
+        var email = mainUser.email;
+        var avatarFile = document.getElementById('avatarUpload').files[0];
 
-        //Names
-        $("#currentMatchNames").html(json[2].name + " VS " + json[5].name);
+        var url = "https://rlaitfunctions.azurewebsites.net/api/newUser?code=YN1TD1aUouEiBeu13CO2GEBrRq4ptE8mnFaCkbMQY9X8kA7eibBfmg==&PID=" + PID + "&username=" + username + "&email=" + email + "&avatar=avatar_" + avatar + "." + avatarFile.name.split('.').pop();
+
+        $("#loader").modal("show");
+
+
+        firebase.auth().currentUser.getIdToken( /* forceRefresh */ true).then(function(idToken) {
+            $.ajax({
+                url: url,
+                method: 'POST',
+                headers: { "Authorization": 'Bearer ' + idToken },
+                success: function(data) {
+                    console.log(data);
+                    $.ajax({
+                        async: true,
+                        url: "https://rlaitsas.azurewebsites.net/api/SASTokenGenerator?code=aG3zfIypmcp1tc8VRv2JvDrlbBc6CAcAAC0DukMRaAmuBttaN3x5Mw==",
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        processData: false,
+                        data: "{\"ContainerName\": \"rlait\"}",
+                        success: function(result) {
+                            const account = {
+                                name: "rlaitimagesandcode",
+                                sas: result
+                            };
+
+                            const blobUri = 'https://' + account.name + '.blob.core.windows.net';
+                            const blobService = AzureStorage.Blob.createBlobServiceWithSas(blobUri, account.sas);
+
+                            //AvatarFile
+                            const fileA = document.getElementById('avatarUpload').files[0];
+                            var extension = fileA.name.split('.').pop();
+                            blobService.createBlockBlobFromBrowserFile('rlait', "avatar_" + mainUser.uid + "." + extension, fileA, (error, result) => {
+                                if (error) {
+                                    console.log(error);
+                                } else {
+                                    return;
+                                }
+                            });
+
+                            //CodeFile
+                            const fileB = document.getElementById('codeUpload').files[0];
+                            var extension = fileB.name.split('.').pop();;
+                            blobService.createBlockBlobFromBrowserFile('rlait', "code_" + mainUser.uid + "." + extension, fileB, (error, result) => {
+                                if (error) {
+                                    console.log(error);
+                                } else {
+                                    return;
+                                }
+                            });
+
+                            $("#loader").modal("hide");
+                            $("#errorTxt").html("Your AI has been uploaded and will be added to the tournament roster");
+                            $("#headerTxt").html("Upload was successful");
+                            $("#errorModal").modal("show");
+                        }
+                    });
+
+
+                },
+                error: function(error) {
+                    $("#loader").modal("hide");
+                    $("#errorTxt").html(error);
+                    $("#errorModal").modal("show");
+                }
             });
-        $("#gameInfoModal").modal("show");
+        }).catch(function(error) {
+            $("#loader").modal("hide");
+            $("#errorTxt").html(error);
+            $("#errorModal").modal("show");
+        });
+    });
 
-}
+    function getUpcomingMatchInfo(increment) {
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://rlaitfunctions.azurewebsites.net/api/getUpcomingMatchInfo",
+            "method": "POST",
+            "headers": {
+                "Content-Type": "application/json",
+                "Cache-Control": "no-cache",
+                "Postman-Token": "7c011b71-dada-42da-821e-0ed562bb84a8"
+            },
+            "processData": false,
+            "data": "{\"increment\": \"" + increment + "\"}"
+        }
+
+        $.ajax(settings).done(function(response) {
+            data = JSON.parse(response);
+            let p1Id;
+            let p1Matches = parseInt(data[1].count) == undefined ? parseInt(data[1].count) : 0;
+            let p1Wins = parseInt(data[2].count) == undefined ? parseInt(data[2].count) : 0;
+            let p2Matches = parseInt(data[5].count) == undefined ? parseInt(data[5].count) : 0;
+            let p2Wins = parseInt(data[6].count) == undefined ? parseInt(data[6].count) : 0;
+            
+            console.log(p2Wins);
+            
+            //P1
+            $("#uindexP1Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/avatar_" + data[0].name + ".jpg");
+
+            $("#uindexPlayer1TotalMatches").html(parseInt(data[1].count));
+            $("#uindexPlayer1TotalWins").html(parseInt(data[2].count));
+            $("#uindexPlayer1WinningPercentage").html((parseInt(data[1].count) == 0 ? 0 : (parseInt(data[2].count) / parseInt(data[1].count))).toFixed(2));
+
+            //P2
+            $("#uindexP2Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/avatar_" + data[4].name + ".jpg");
+            $("#uindexPlayer2TotalMatches").html(parseInt(data[5].count));
+            $("#uindexPlayer2TotalWins").html(parseInt(data[6].count));
+            $("#uindexPlayer2WinningPercentage").html((parseInt(data[5].count) == 0 ? 0 : (parseInt(data[6].count) / parseInt(data[5].count))).toFixed(2));
+
+            //Names
+            $("#ucurrentMatchNames").html(data[3].name + " VS " + data[7].name);
+        });
+        $("#gameInfoModal").modal("show");
+    }

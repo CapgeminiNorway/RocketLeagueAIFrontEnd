@@ -30,7 +30,7 @@ namespace FirebaseAuthenticate
 
             var str = "Server=tcp:rlait.database.windows.net,1433;Initial Catalog=RocketLeagueAI;Persist Security Info=False;User ID=cap_admin;Password=qwerty_1234567;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             string sqlMatches = "SELECT COUNT(matchID) FROM matchList WHERE PID1 = '" + PID + "' or PID2 = '" + PID + "';";
-            string sqlWins = "SELECT Count(winner) FROM results WHERE winner = '" + PID + "';";
+            string sqlWins = "SELECT COUNT(DISTINCT matchID) FROM results WHERE win = 1 GROUP BY PID;";
             List<Entry> result = new List<Entry>();
 
             using (SqlConnection connection = new SqlConnection(str))

@@ -22,7 +22,7 @@ namespace FirebaseAuthenticate
             List<Entry> result = new List<Entry>();
             List<string> PIDs = new List<string>();
 
-            string sqlPID = "SELECT PID1, PID2 FROM matchList WHERE matchId > (SELECT matchId FROM matchList WHERE currentGame = 1) ;";
+            string sqlPID = "SELECT PID1, PID2 FROM matchList WHERE matchId > (SELECT matchId FROM matchList WHERE currentMatch = 1) ;";
             using (SqlConnection connection = new SqlConnection(str))
             {
                 connection.Open();

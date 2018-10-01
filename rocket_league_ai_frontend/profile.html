@@ -51,18 +51,11 @@ var mainUser;
 function checkUser() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            mainUser = user;
-            document.getElementById("navProfile").style.display = 'block';
-            document.getElementById("logInBtn").style.display = 'none';
-            document.getElementById("signOutBtn").style.display = 'block';
-
             var json;
             var wins = 0;
             var matches = 0;
             var loss = 0;
-
-
-
+            
             var settings = {
                 "async": true,
                 "crossDomain": true,
@@ -77,26 +70,20 @@ function checkUser() {
                 "data": "{\"PID\": \"" + mainUser.uid + "\"}"
             }
             
-            console.log(settings.data);
             $.ajax(settings).done(function(response) {
                 json = response;
                 console.log(response);
                 
                 matches = parseInt(json[0].count);
-                if(json.length < 1){
+                if(json.length > 0){
                     wins = parseInt(json[1].count);
-                }
+                } 
                 loss = ((matches - wins) == 0) ? 1 : (matches - wins);
-
                 
                 $("#profileTotalMatches").html(matches);
                 $("#profileTotalWins").html(wins);
                 $("#profileWinPer").html((wins / loss).toFixed(2));
             });
-
-
-
-
         } else {
             document.getElementById("navProfile").style.display = 'none';
             document.getElementById("logInBtn").style.display = 'block';
@@ -104,7 +91,6 @@ function checkUser() {
         }
     });
 }
-
 
 window.onload = checkUser;
 </script>
