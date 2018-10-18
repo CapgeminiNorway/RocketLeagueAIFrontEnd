@@ -35,6 +35,7 @@ var mainUser;
 window.onload = function() {
     $.getJSON("https://rlaitfunctions.azurewebsites.net/api/getCurrentMatch", function(data) {
         data = JSON.parse(data);
+		console.log(data);
         //P1
         $("#p1Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/" + data[4].name);
 
