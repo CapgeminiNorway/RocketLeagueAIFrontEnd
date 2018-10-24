@@ -35,6 +35,7 @@ window.onload = function() {
 	setInterval(getStats, 10000);
     attachStream();
 }
+var i = 0;
 function getStats(){
 	$.getJSON("https://rlaitfunctions.azurewebsites.net/api/getCurrentMatch", function(data) {
         data = JSON.parse(data);
