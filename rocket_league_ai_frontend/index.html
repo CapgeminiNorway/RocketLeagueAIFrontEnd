@@ -32,11 +32,11 @@
 <script>
 
 window.onload = function() {
-	setInterval(getStats(), 3000);
+	setInterval(getStats, 10000);
     attachStream();
 }
 function getStats(){
-	    $.getJSON("https://rlaitfunctions.azurewebsites.net/api/getCurrentMatch", function(data) {
+	$.getJSON("https://rlaitfunctions.azurewebsites.net/api/getCurrentMatch", function(data) {
         data = JSON.parse(data);
 		console.log(data);
         //P1
@@ -76,13 +76,13 @@ function getStats(){
 
     $.getJSON('https://rlaitfunctions.azurewebsites.net/api/getLeaderBoard', function(data) {
         let json = data
-
+		document.getElementById("leaderBody").innerHTML = "";
 
 
         for (var i = 0; i < json.length; i++) {
             //$("#index" + i).html(json[i].userName);
             //$("#index" + i + "Score").html(json[i].count);
-
+			
             let row = document.createElement('tr');
             let content1 = document.createElement('td');
             let content1TextNode = document.createTextNode(json[i].count);
