@@ -30,10 +30,13 @@
 
 <body><script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>
-var mainUser;
 
 window.onload = function() {
-    $.getJSON("https://rlaitfunctions.azurewebsites.net/api/getCurrentMatch", function(data) {
+	setInterval(getStats(), 3000);
+    attachStream();
+}
+function getStats(){
+	    $.getJSON("https://rlaitfunctions.azurewebsites.net/api/getCurrentMatch", function(data) {
         data = JSON.parse(data);
 		console.log(data);
         //P1
@@ -94,7 +97,10 @@ window.onload = function() {
 
         $("#leaderboard").show();
     });
-    var iframe = document.createElement('iframe');
+}
+
+	function attachStream(){
+	var iframe = document.createElement('iframe');
     iframe.style.display = "block";
     iframe.src = "https://player.twitch.tv/?channel=capgemini_rocketleagueai";
     iframe.allow = "fullscreen";
@@ -105,6 +111,9 @@ window.onload = function() {
     document.getElementById("twitchContainer").className = "embed-responsive embed-responsive-16by9";
     document.getElementById("twitchContainer").appendChild(iframe);
 }
+
+
+
 </script>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" id="navBar" style="display: none">
         <div class="container"><a class="navbar-brand" href="index.html"><img src="assets/img/capgeminiLogo.svg"></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
