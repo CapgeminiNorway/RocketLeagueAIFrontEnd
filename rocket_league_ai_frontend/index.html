@@ -35,7 +35,6 @@ window.onload = function() {
 	setInterval(getStats, 10000);
     attachStream();
 }
-var i = 0;
 function getStats(){
 	$.getJSON("https://rlaitfunctions.azurewebsites.net/api/getCurrentMatch", function(data) {
         data = JSON.parse(data);
@@ -175,11 +174,7 @@ function getStats(){
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
-                                <tr>
-                                    <th>Player 1</th>
-                                    <th></th>
-                                    <th>Player 2</th>
-                                </tr>
+                                <tr></tr>
                             </thead>
                             <tbody>
                                 <tr>
