@@ -102,7 +102,6 @@ $("#submitBtn").click(function() {
             method: 'POST',
             headers: { "Authorization": 'Bearer ' + idToken },
             success: function(data) {
-                console.log(data);
                 $.ajax({
                     async: true,
                     url: "https://rlaitsas.azurewebsites.net/api/SASTokenGenerator?code=aG3zfIypmcp1tc8VRv2JvDrlbBc6CAcAAC0DukMRaAmuBttaN3x5Mw==",

@@ -38,7 +38,6 @@ window.onload = function() {
 function getStats(){
 	$.getJSON("https://rlaitfunctions.azurewebsites.net/api/getCurrentMatch", function(data) {
         data = JSON.parse(data);
-		console.log(data);
         //P1
         $("#p1Avatar").attr("src", "https://rlaitimagesandcode.blob.core.windows.net/rlait/" + data[4].name);
 
@@ -54,11 +53,7 @@ function getStats(){
 
         //Names
         $("#currentMatchNames").html(data[3].name + " VS " + data[8].name);
-
         $("#currentMatch").show();
-
-
-
     });
 
     $.getJSON("https://rlaitfunctions.azurewebsites.net/api/getUpcomingMatches", function(data) {
@@ -71,7 +66,6 @@ function getStats(){
             }
         }
         $("#upcomingMatches").show();
-
     });
 
     $.getJSON('https://rlaitfunctions.azurewebsites.net/api/getLeaderBoard', function(data) {
